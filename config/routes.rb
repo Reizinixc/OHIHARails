@@ -1,5 +1,9 @@
 OHIHA::Application.routes.draw do
   
+  resources :question_homeworks
+
+  resources :self_homeworks
+
   resources :courses
 
   resources :users

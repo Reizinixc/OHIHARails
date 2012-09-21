@@ -6,6 +6,7 @@ class CreateHomeworks < ActiveRecord::Migration
       t.datetime :start_date
       t.datetime :due_date
       t.boolean :is_suspend
+      t.string :type
 
       t.timestamps
     end
