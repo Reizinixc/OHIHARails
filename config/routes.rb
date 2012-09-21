@@ -1,5 +1,7 @@
 OHIHA::Application.routes.draw do
   
+  resources :courses
+
   resources :users
   
   resource :user_sessions
