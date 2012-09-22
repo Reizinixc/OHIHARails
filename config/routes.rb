@@ -1,5 +1,13 @@
 OHIHA::Application.routes.draw do
   
+  resources :homework_answer_files
+
+  resources :question_answers
+
+  root :to => "user_sessions#new"
+
+  resources :question_answers
+  
   resources :question_homeworks
 
   resources :self_homeworks
@@ -9,8 +17,6 @@ OHIHA::Application.routes.draw do
   resources :users
   
   resource :user_sessions
-  
-  root :to => "user_sessions#new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

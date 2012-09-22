@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sent time:</b>
+  <%= @question_answer.sent_time %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @question_answer.ip %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @question_answer.score %>
+</p>
+
+<p>
+  <b>Reason:</b>
+  <%= @question_answer.reason %>
+</p>
+
+<p>
+  <b>Answer:</b>
+  <%= @question_answer.answer %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_answer_path(@question_answer) %> |
+<%= link_to 'Back', question_answers_path %>

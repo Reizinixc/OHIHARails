@@ -1,0 +1,35 @@
+<h1>Listing homework_answer_files</h1>
+
+<table>
+  <tr>
+    <th>Sent time</th>
+    <th>Ip</th>
+    <th>Score</th>
+    <th>Reason</th>
+    <th>Revision</th>
+    <th>File path</th>
+    <th>Desciption</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @homework_answer_files.each do |homework_answer_file| %>
+  <tr>
+    <td><%= homework_answer_file.sent_time %></td>
+    <td><%= homework_answer_file.ip %></td>
+    <td><%= homework_answer_file.score %></td>
+    <td><%= homework_answer_file.reason %></td>
+    <td><%= homework_answer_file.revision %></td>
+    <td><%= homework_answer_file.file_path %></td>
+    <td><%= homework_answer_file.desciption %></td>
+    <td><%= link_to 'Show', homework_answer_file %></td>
+    <td><%= link_to 'Edit', edit_homework_answer_file_path(homework_answer_file) %></td>
+    <td><%= link_to 'Destroy', homework_answer_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Homework answer file', new_homework_answer_file_path %>

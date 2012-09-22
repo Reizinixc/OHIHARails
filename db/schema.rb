@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921193725) do
+ActiveRecord::Schema.define(:version => 20120922095107) do
 
   create_table "courses", :force => true do |t|
     t.string   "course_code"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(:version => 20120921193725) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "homework_answer_files", :force => true do |t|
+    t.datetime "sent_time"
+    t.string   "ip"
+    t.integer  "score"
+    t.text     "reason"
+    t.integer  "revision"
+    t.string   "file_path"
+    t.text     "desciption"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "homeworks", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -32,6 +44,21 @@ ActiveRecord::Schema.define(:version => 20120921193725) do
     t.string   "type"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "question_answers", :force => true do |t|
+    t.datetime "sent_time"
+    t.string   "ip"
+    t.integer  "score"
+    t.text     "reason"
+    t.text     "answer"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "question_homeworks", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "self_homeworks", :force => true do |t|
