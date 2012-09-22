@@ -1,3 +1,5 @@
 class QuestionHomework < Homework
-  # attr_accessible :title, :body
+  
+  has_many :item, :dependent => :destroy
+  
 end

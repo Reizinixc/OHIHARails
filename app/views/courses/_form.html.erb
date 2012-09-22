@@ -11,27 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :course_code %><br />
-    <%= f.text_field :course_code, :maxlength => 8 %>
-  </div>
-  <div class="field">
-    <%= f.label :thai_course_name %><br />
-    <%= f.text_field :thai_course_name %>
-  </div>
-  <div class="field">
-    <%= f.label :eng_course_name %><br />
-    <%= f.text_field :eng_course_name %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.text_field :year, :maxlength => 4 %>
-  </div>
-  <div class="field">
-    <%= f.label :semester %><br />
-    <%= f.number_field :semester, :min => 0, :max => 3 %>
-  </div>
   <div class="actions">
+  	<%= f.label :course_code %><br />
+  	<%= f.text_field :course_code %><br />
+  	
+  	<%= f.label :thai_course_name %><br />
+  	<%= f.text_field :thai_course_name %><br />
+  	
+  	<%= f.label :eng_course_name %><br />
+  	<%= f.text_field :eng_course_name %><br />
+  	
     <%= f.submit %>
   </div>
 <% end %>

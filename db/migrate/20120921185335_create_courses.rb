@@ -4,8 +4,6 @@ class CreateCourses < ActiveRecord::Migration
       t.string :course_code
       t.string :thai_course_name
       t.string :eng_course_name
-      t.string :year
-      t.integer :semester
 
       t.timestamps
     end

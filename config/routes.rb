@@ -1,10 +1,20 @@
 OHIHA::Application.routes.draw do
   
+  resources :courses
+
+  root :to => "user_sessions#new"
+  
+  match "/login"       => "user_sessions#new"
+  match "/user/:login" => "user#show" 
+  
+  resources :items
+
+  resources :sections
+
   resources :homework_answer_files
 
   resources :question_answers
 
-  root :to => "user_sessions#new"
 
   resources :question_answers
   

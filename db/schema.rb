@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120922095107) do
+ActiveRecord::Schema.define(:version => 20120922121438) do
 
   create_table "courses", :force => true do |t|
     t.string   "course_code"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(:version => 20120922095107) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "items", :force => true do |t|
+    t.text     "question"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "question_answers", :force => true do |t|
     t.datetime "sent_time"
     t.string   "ip"
@@ -61,7 +67,29 @@ ActiveRecord::Schema.define(:version => 20120922095107) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "sections", :force => true do |t|
+    t.integer  "section"
+    t.boolean  "is_suspend"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "self_homeworks", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "ta", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "takes", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "teaches", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

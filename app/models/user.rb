@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   
+  has_many :section, :through => :takes
+  has_many :section, :through => :ta
+  has_many :section, :through => :teaches  
   acts_as_authentic do |c|
     c.login_field = :login
   end
@@ -19,5 +22,7 @@ class User < ActiveRecord::Base
    
    # A username for logining must be a character and <= 11 characters
    validates :login, :format => { :with => /\w{,11}/ }
+   
+   validates :email, :uniqueness => true
    
 end
