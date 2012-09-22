@@ -14,6 +14,7 @@
     <% if current_user %>
       <!-- Gravatar Image -->
       <%= "#{current_user.name} #{current_user.lastname}" %>
+      <%= link_to t('settings'), "/settings" %>
       <%= link_to t('logout'), "/logout" %>
     <% else %>
       <%= link_to t('login'), "/login" %>
@@ -27,7 +28,7 @@
 </div>
 
 <footer id="footer">
-
+  2012 OHIHA Project. Some rights reseved
 </footer>
 
 </body>

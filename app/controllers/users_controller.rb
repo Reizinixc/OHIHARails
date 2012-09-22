@@ -15,7 +15,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find_by_username(params[:username])
-    @title = "#{@user.name} #{@user.lastname}"
+    unless @user.nil?
+      @title = "#{@user.name} #{@user.lastname}"
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,15 +29,12 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    #@user = User.find(params[:username])
+    @user = current_user
   end
 
   # POST /users
@@ -55,11 +54,12 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    #@user = User.find(params[:username])
+    @user = User.find_by_username(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_url, notice: 'User was successfully updated.' }
       else
         format.html { render action: "edit" }
       end
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find(params[:username])
     @user.destroy
 
     respond_to do |format|

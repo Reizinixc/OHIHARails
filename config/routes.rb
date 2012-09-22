@@ -1,16 +1,15 @@
 OHIHARubymine::Application.routes.draw do
+
   root :to => 'user_sessions#new'
 
   match '/login' => 'user_sessions#new'
   match '/logout' => 'user_sessions#destroy'
-
-  match '/user' => 'users#show'
+  match '/settings' => 'users#edit'
 
   get '/user/:username' => 'users#show'
 
-
-  resources :user_sessions
   resources :users
+  resources :user_sessions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

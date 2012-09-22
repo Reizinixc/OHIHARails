@@ -10,3 +10,4 @@ en:
   logout: "Logout"
   logout_successful: "Logout successful!"
   signup: "Sign up"
+  settings: "Edit Profile"
