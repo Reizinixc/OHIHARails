@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
     c.login_field = :username
   end
 
+  has_many :tas, :dependent => :destroy
+  has_many :sections, :through => :tas
+
+  has_many :takeses, :dependent => :destroy
+  has_many :sections, :through => :takeses
+
   def to_param
     username
   end

@@ -1,5 +1,17 @@
 OHIHARubymine::Application.routes.draw do
 
+  get "takes/new"
+
+  get "takes/create"
+
+  get "takes/destroy"
+
+  get "ta/new"
+
+  get "ta/create"
+
+  get "ta/destroy"
+
   resources :sections
 
   resources :courses
