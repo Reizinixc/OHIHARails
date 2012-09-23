@@ -1,4 +1,4 @@
-class CreateTA < ActiveRecord::Migration
+class CreateTa < ActiveRecord::Migration
   def change
     create_table :ta do |t|
       t.integer :user_id,  :null => false

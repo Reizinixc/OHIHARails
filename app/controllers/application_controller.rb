@@ -35,15 +35,19 @@ class ApplicationController < ActionController::Base
   helper_method :teacher?, :admin?, :require_teacher, :require_admin
 
   def teacher?
-    false if current_user.nil?
-  else
-    current_user.position == 't'
+    if current_user.nil?
+      false
+    else
+      current_user.position == 't'
+    end
   end
 
   def admin?
-    false if current_user.nil?
-  else
-    current_user.position == 'a'
+    if current_user.nil?
+      false
+    else
+      current_user.position == 'a'
+    end
   end
 
   def require_teacher

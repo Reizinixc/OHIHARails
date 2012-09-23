@@ -22,7 +22,9 @@ describe User do
   end
 
   context "Association" do
-    pending "Test when Section model generated"
+    it { should have_many(:section).through :tas }
+    it { should have_many(:section).through :teaches }
+    it { should have_many(:section).through :takeses }
   end
 
   context "Validation" do
@@ -45,7 +47,7 @@ describe User do
       @user    = User.new(:username              => "gkitakira",
                           :password              => password,
                           :password_confirmation => password,
-                          :name           => "Kita",
+                          :name                  => "Kita",
                           :lastname              => "Kira",
                           :email                 => "kitakira@icj.ac.th",
                           :alt_email             => "kitakira@nixc.tk",
