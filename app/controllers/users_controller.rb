@@ -1,44 +1,33 @@
 class UsersController < ApplicationController
+
+  before_filter :require_not_login, :only => [:new, :create]
+  before_filter :require_login, :except => [:new, :create, :destroy]
+
   # GET /users
-  # GET /users.json
   def index
     @title = "Member List"
     @users = User.all
-
-    #respond_to do |format|
-    #  format.html # index.html.erb
-    #  #format.json { render json: @users }
-    #end
   end
 
-  # GET /users/1
-  # GET /users/1.json
+  # GET /users/:username
   def show
-    @user = User.find_by_username(params[:username])
-    unless @user.nil?
-      @title = "#{@user.name} #{@user.lastname}"
-    end
-
-    #respond_to do |format|
-    #  format.html # show.html.erb
-    #  #format.json { render json: @user }
-    #end
+    @user  = User.find_by_username(params[:username])
+    @title = "#{@user.name} #{@user.lastname}"
   end
 
   # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
+# GET /users/settings
   def edit
     #@user = User.find(params[:username])
     @user = current_user
   end
 
-  # POST /users
-  # POST /users.json
+# POST /users
+# POST /users.json
   def create
     @user = User.new(params[:user])
 
@@ -51,8 +40,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
+# PUT /users/1
   def update
     #@user = User.find(params[:username])
     @user = User.find_by_username(params[:id])
@@ -67,11 +55,15 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+# DELETE /users/1
+# DELETE /users/1.json
   def destroy
     #@user = User.find(params[:username])
-    @user = User.find_by_username(params[:id])
+    if admin?
+      @user = User.find_by_username(params[:id])
+    else
+      @user = current_user
+    end
     @user.destroy
 
     redirect_to users_url

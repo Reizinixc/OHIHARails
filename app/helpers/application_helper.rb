@@ -12,18 +12,23 @@ module ApplicationHelper
               :height => height
   end
 
-  def teacher?
-    false if current_user.nil?
-  else
-    current_user.position == 't'
-  end
-
-  def header_name
-    if teacher?
-      "#{t('teacher')} #{current_user.name} #{current_user.lastname}"
+  def title(title)
+    base_title = "Online Handing in Homework Assistant"
+    unless title.nil?
+      "#{title} | #{base_title}"
     else
-      "#{current_user.name} #{current_user.lastname}"
+      "#{base_title}"
     end
   end
 
+  def header_name
+    base_name = "#{current_user.name} #{current_user.lastname}"
+    if teacher?
+      "#{t('teacher')} #{base_name}"
+    elsif admin?
+      "#{t('admin')} #{base_name}"
+    else
+      base_name
+    end
+  end
 end

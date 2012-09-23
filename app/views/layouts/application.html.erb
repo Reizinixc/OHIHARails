@@ -13,7 +13,7 @@
   <div id="account_panel">
     <% if current_user %>
       <%= gravatar_for current_user, 30, 30 %>
-      <span class="name"><%= header_name %></span>
+      <%= link_to header_name, "/user/#{current_user.username}", :class => "username" %>
       <nav>
         <li><%= link_to t('settings'), "/settings" %></li>
         <li><%= link_to t('logout'), "/logout" %></li>
@@ -28,9 +28,13 @@
 </header>
 
 <div id="wrapper">
-  <% unless flash[:notice].nil? %>
+  <% if flash.any? %>
     <div id="notice">
-      <%= flash[:notice] %>
+      <ul>
+        <% flash.each do |key, value| %>
+          <li class="<%= key %>"><%= value %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
 

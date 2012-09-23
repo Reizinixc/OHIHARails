@@ -36,7 +36,7 @@ describe User do
     it { should validate_presence_of :lastname }
     it { should validate_presence_of :email }
     it { should validate_presence_of :alt_email }
-    #it { should validate_presence_of :type }
+    #it { should validate_presence_of :position }
   end
 
   context "Add user" do
@@ -45,10 +45,11 @@ describe User do
       @user    = User.new(:username              => "gkitakira",
                           :password              => password,
                           :password_confirmation => password,
-                          :header_name                  => "Kita",
+                          :name           => "Kita",
                           :lastname              => "Kira",
                           :email                 => "kitakira@icj.ac.th",
-                          :alt_email             => "kitakira@nixc.tk")
+                          :alt_email             => "kitakira@nixc.tk",
+                          :position              => "t")
 
       describe "Valid Data" do
         it "must be valid by @user default attributes" do
@@ -135,7 +136,7 @@ describe User do
         end
 
         it "should be valid from fancy password" do
-          password = "?!(#*@)*!&*($*)"
+          password                    = "?!(#*@)*!&*($*)"
           @user.password_confirmation = @user.password = password
           @user.should be_valid
         end
