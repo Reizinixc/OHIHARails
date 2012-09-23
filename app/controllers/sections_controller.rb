@@ -1,4 +1,7 @@
 class SectionsController < ApplicationController
+
+  before_filter :require_teacher, :except => []
+
   # GET /sections
   def index
     @sections = Section.all

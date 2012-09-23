@@ -1,4 +1,8 @@
 class TaController < ApplicationController
+
+  before_filter :require_teacher, :only => [:new, :create]
+  before_filter :require_login, :except => [:new, :create]
+
   def new
     @ta = TA.new
   end

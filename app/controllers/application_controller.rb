@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
 
   def require_teacher
     if current_user
-      unless teacher?
+      unless teacher? or admin?
         flash[:error] = "You must be a #{t('teacher')} to continue"
         redirect_to "/user/#{current_user.username}"
       end
@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     if current_user
-      unless teacher?
+      unless admin?
         flash[:error] = "You must be a #{t('admin')} to continue"
         redirect_to "/user/#{current_user.username}"
       end
