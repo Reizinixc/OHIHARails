@@ -31,3 +31,6 @@ pickle-email-*.html
 
 # For OS X User
 .DS_Store
+
+# For RubyMine IDE
+.idea/*
