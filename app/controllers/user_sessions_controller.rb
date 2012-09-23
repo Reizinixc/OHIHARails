@@ -1,11 +1,9 @@
 class UserSessionsController < ApplicationController
-  #before_filter :require_no_user, :only => [:new, :create]
-  #before_filter :require_user, :only => :destroy
+
+  before_filter :require_not_login, :only => [:new, :create]
+  before_filter :require_login, :except => [:new, :create]
 
   def new
-    if current_user
-      redirect_to users_path
-    end
     @user_session = UserSession.new
   end
 

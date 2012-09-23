@@ -1,5 +1,7 @@
 OHIHARubymine::Application.routes.draw do
 
+  resources :courses
+
   root :to => 'user_sessions#new'
 
   match '/login', :to => 'user_sessions#new'
