@@ -45,7 +45,7 @@ describe User do
       @user    = User.new(:username              => "gkitakira",
                           :password              => password,
                           :password_confirmation => password,
-                          :name                  => "Kita",
+                          :header_name                  => "Kita",
                           :lastname              => "Kira",
                           :email                 => "kitakira@icj.ac.th",
                           :alt_email             => "kitakira@nixc.tk")
@@ -145,31 +145,31 @@ describe User do
         it "should not be non-human name" do
           @user.name = 'abc2'
           @user.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
 
           @user.name = '\#!/bin/'
           @user.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
         end
 
         it "should not be blank" do
           @user.name = nil
           @user.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
 
           @username.name = ''
           @user.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
         end
 
         it "should not include a non-readable character" do
           @username.name = 'Somchai \nAry'
           @username.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
 
           @username.name = ' '
           @username.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
         end
       end
 
@@ -177,31 +177,31 @@ describe User do
         it "should not be non-human name" do
           @user.lastname = 'abc2'
           @user.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
 
           @user.lastname = '\#!/bin/'
           @user.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
         end
 
         it "should not be blank" do
           @user.lastname = nil
           @user.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
 
           @username.lastname = ''
           @user.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
         end
 
         it "should not include a non-readable character" do
           @username.lastname = 'Somchai \nAry'
           @username.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
 
           @username.lastname = ' '
           @username.should_not be_valid
-          @user.should have(1).error_on(:name)
+          @user.should have(1).error_on(:header_name)
         end
       end
     end
