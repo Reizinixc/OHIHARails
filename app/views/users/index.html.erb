@@ -24,7 +24,6 @@
     <td><%= user.last_login_at %></td>
     <td><%= user.last_login_ip %></td>
     <td><%= link_to 'Show', "/user/#{user.username}" %></td>
-    <td><%= link_to 'Edit', edit_user_path(user.username) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

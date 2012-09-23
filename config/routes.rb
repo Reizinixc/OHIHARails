@@ -2,9 +2,9 @@ OHIHARubymine::Application.routes.draw do
 
   root :to => 'user_sessions#new'
 
-  match '/login' => 'user_sessions#new'
-  match '/logout' => 'user_sessions#destroy'
-  match '/settings' => 'users#edit'
+  match '/login', :to => 'user_sessions#new'
+  match '/logout', :to => 'user_sessions#destroy'
+  match '/settings', :to => 'users#edit'
 
   get '/user/:username' => 'users#show'
 

@@ -24,6 +24,12 @@
 </header>
 
 <div id="wrapper">
+  <% unless flash[:notice].nil? %>
+    <div id="notice">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
   <%= yield %>
 </div>
 
