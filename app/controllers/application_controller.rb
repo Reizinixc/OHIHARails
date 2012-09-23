@@ -59,7 +59,6 @@ class ApplicationController < ActionController::Base
     else
       require_login
     end
-
   end
 
   def require_admin
@@ -70,6 +69,15 @@ class ApplicationController < ActionController::Base
       end
     else
       require_login
+    end
+  end
+
+  def ta?(section)
+    begin
+      result = TA.where "user_id = ? AND section_id = ?", current_user.id, section.id
+      result.any?
+    rescue
+      false
     end
   end
 end
