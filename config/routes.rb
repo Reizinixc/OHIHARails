@@ -1,5 +1,7 @@
 OHIHARubymine::Application.routes.draw do
 
+  resources :sections
+
   resources :courses
 
   root :to => 'user_sessions#new'
