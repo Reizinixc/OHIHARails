@@ -2,9 +2,11 @@ class Section < ActiveRecord::Base
 
   belongs_to :course
 
-  has_many :courses, :through => :tas
+  has_many :users, :through => :tas
 
-  has_many :courses, :through => :takeses
+  has_many :users, :through => :takeses
+
+  has_many :users, :through => :teaches
 
   attr_accessible :section,
                   :semester,

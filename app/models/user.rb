@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :takeses, :dependent => :destroy
   has_many :sections, :through => :takeses
 
+  has_many :teaches, :dependent => :destroy
+  has_many :sections, :through => :teaches
+
   def to_param
     username
   end

@@ -1,5 +1,11 @@
 OHIHARubymine::Application.routes.draw do
 
+  get "teach/new"
+
+  get "teach/create"
+
+  get "teach/destroy"
+
   get "takes/new"
 
   get "takes/create"
