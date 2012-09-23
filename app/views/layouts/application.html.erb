@@ -12,8 +12,9 @@
 
   <div id="account_panel">
     <% if current_user %>
-      <!-- Gravatar Image -->
+      <%= gravatar_for current_user, 30, 30 %>
       <%= "#{current_user.name} #{current_user.lastname}" %>
+      <%= link_to t('settings'), "/settings" %>
       <%= link_to t('logout'), "/logout" %>
     <% else %>
       <%= link_to t('login'), "/login" %>
@@ -23,11 +24,17 @@
 </header>
 
 <div id="wrapper">
+  <% unless flash[:notice].nil? %>
+    <div id="notice">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
   <%= yield %>
 </div>
 
 <footer id="footer">
-
+  2012 OHIHA Project. Some rights reseved
 </footer>
 
 </body>

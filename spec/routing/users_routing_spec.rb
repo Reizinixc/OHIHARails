@@ -1,34 +1,29 @@
 require "spec_helper"
 
 describe UsersController do
-  describe "routing" do
 
-    it "routes to #index" do
-      get("/users").should route_to("users#index")
-    end
+  context "routing" do
 
-    it "routes to #new" do
-      get("/users/new").should route_to("users#new")
-    end
+    describe "User's List" do
+      it "should route to User's List" do
+        get("/users").should route_to("users#index")
+      end
 
-    it "routes to #show" do
-      get("/users/1").should route_to("users#show", :id => "1")
-    end
+      it "should route to User's Profile" do
+        get("/user/gHarasama").should route_to("users#show", :username => "gHarasama")
+      end
 
-    it "routes to #edit" do
-      get("/users/1/edit").should route_to("users#edit", :id => "1")
-    end
+      it "should route to Login Page" do
+        get("/login").should route_to("user_sessions#new")
+      end
 
-    it "routes to #create" do
-      post("/users").should route_to("users#create")
-    end
+      it "should route to Login Page" do
+        get("/logout").should route_to("user_sessions#destroy")
+      end
 
-    it "routes to #update" do
-      put("/users/1").should route_to("users#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      delete("/users/1").should route_to("users#destroy", :id => "1")
+      it "should route to Edit Profile Page" do
+        get("/settings").should route_to("users#edit")
+      end
     end
 
   end

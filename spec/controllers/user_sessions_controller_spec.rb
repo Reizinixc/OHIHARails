@@ -24,7 +24,10 @@ describe UserSessionsController do
   # UserSession. As you add validations to UserSession, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { }
+    {
+        :username => 'bTest',
+        :password => '12345'
+    }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -43,54 +46,16 @@ describe UserSessionsController do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new UserSession" do
-        expect {
-          post :create, { :user_session => valid_attributes }, valid_session
-        }.to change(UserSession, :count).by(1)
-      end
 
-      it "assigns a newly created user_session as @user_session" do
-        post :create, { :user_session => valid_attributes }, valid_session
-        assigns(:user_session).should be_a(UserSession)
-        assigns(:user_session).should be_persisted
-      end
-
-      it "redirects to the created user_session" do
-        post :create, { :user_session => valid_attributes }, valid_session
-        response.should redirect_to(UserSession.last)
-      end
     end
     describe "with invalid params" do
-      it "assigns a newly created but unsaved user_session as @user_session" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        UserSession.any_instance.stub(:save).and_return(false)
-        post :create, { :user_session => { } }, valid_session
-        assigns(:user_session).should be_a_new(UserSession)
-      end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        UserSession.any_instance.stub(:save).and_return(false)
-        post :create, { :user_session => { } }, valid_session
-        response.should render_template("new")
-      end
     end
 
   end
 
 
   describe "DELETE destroy" do
-    it "destroys the requested user_session" do
-      user_session = UserSession.create! valid_attributes
-      expect {
-        delete :destroy, { :id => user_session.to_param }, valid_session
-      }.to change(UserSession, :count).by(-1)
-    end
 
-    it "redirects to the user_sessions list" do
-      user_session = UserSession.create! valid_attributes
-      delete :destroy, { :id => user_session.to_param }, valid_session
-      response.should redirect_to(user_sessions_url)
-    end
   end
 end
