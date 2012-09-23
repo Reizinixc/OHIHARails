@@ -13,12 +13,16 @@
   <div id="account_panel">
     <% if current_user %>
       <%= gravatar_for current_user, 30, 30 %>
-      <%= "#{current_user.name} #{current_user.lastname}" %>
-      <%= link_to t('settings'), "/settings" %>
-      <%= link_to t('logout'), "/logout" %>
+      <span class="name"><%= header_name %></span>
+      <nav>
+        <li><%= link_to t('settings'), "/settings" %></li>
+        <li><%= link_to t('logout'), "/logout" %></li>
+      </nav>
     <% else %>
-      <%= link_to t('login'), "/login" %>
-      <%= link_to t('signup'), new_user_path %>
+      <nav>
+        <li><%= link_to t('login'), "/login" %></li>
+        <li><%= link_to t('signup'), new_user_path %></li>
+      </nav>
     <% end %>
   </div>
 </header>
@@ -34,7 +38,8 @@
 </div>
 
 <footer id="footer">
-  2012 OHIHA Project. Some rights reseved
+  2012 OHIHA Project. Some rights reseved.<br/>
+  The OHIHA Project is a part of Software Design Development &amp; System Analysis and Design.
 </footer>
 
 </body>

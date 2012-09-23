@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
                   :name,
                   :lastname,
                   :password_salt,
-                  :persistence_token
+                  :persistence_token,
+                  :position
 
   validates :alt_email,
             :email,
@@ -27,8 +28,10 @@ class User < ActiveRecord::Base
             :name,
             :password_confirmation,
             :password, :presence => true
+            #:type, :presence => true
 
   validates :username, :format => { :with => /((b\w+)|(g\w+)|(f\w+)){1,11}/ }
   validates :password, :confirmation => true
   validates :email, :uniqueness => true
+  #validates :type, :inclusion => { :in => %w[s t], :message => "User's type should be valid" }
 end

@@ -32,6 +32,7 @@ describe UsersController do
       :lastname              => "lastname",
       :email                 => '1234@example.com',
       :alt_email             => '1234@example.net',
+      :position              => "s"
     }
   end
 

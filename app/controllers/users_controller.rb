@@ -5,10 +5,10 @@ class UsersController < ApplicationController
     @title = "Member List"
     @users = User.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      #format.json { render json: @users }
-    end
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  #format.json { render json: @users }
+    #end
   end
 
   # GET /users/1
@@ -19,10 +19,10 @@ class UsersController < ApplicationController
       @title = "#{@user.name} #{@user.lastname}"
     end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      #format.json { render json: @user }
-    end
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  #format.json { render json: @user }
+    #end
   end
 
   # GET /users/new
