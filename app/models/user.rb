@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :teaches, :dependent => :destroy
   has_many :sections, :through => :teaches
 
+  has_many :self_homework_answer_files, :dependent => :destroy
+  has_many :question_answers, :dependent => :destroy
+
   def to_param
     username
   end

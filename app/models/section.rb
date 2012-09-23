@@ -9,6 +9,8 @@ class Section < ActiveRecord::Base
 
   has_many :users, :through => :teaches
 
+  has_many :homeworks, :dependent => :destroy
+
   attr_accessible :section,
                   :semester,
                   :year,
