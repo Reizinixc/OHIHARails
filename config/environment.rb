@@ -3,3 +3,6 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 OHIHARubymine::Application.initialize!
+
+# For AuthLogic Testing
+Authlogic::Session::Base.controller = Authlogic::ControllerAdapters::RailsAdapter.new(self)

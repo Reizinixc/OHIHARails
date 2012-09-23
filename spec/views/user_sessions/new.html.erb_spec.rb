@@ -1,5 +1,5 @@
-require 'spec_helper'
-
-describe "user_sessions/new" do
-
-end
+#require 'spec_helper'
+#
+#describe "user_sessions/new" do
+#
+#end
