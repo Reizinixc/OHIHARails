@@ -1,2 +1,0 @@
-module HomeworkAnswerFilesHelper
-end

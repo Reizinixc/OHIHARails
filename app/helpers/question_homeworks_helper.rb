@@ -1,2 +1,0 @@
-module QuestionHomeworksHelper
-end
