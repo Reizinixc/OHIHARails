@@ -12,7 +12,7 @@
 
   <div id="account_panel">
     <% if current_user %>
-      <!-- Gravatar Image -->
+      <%= gravatar_for current_user, 30, 30 %>
       <%= "#{current_user.name} #{current_user.lastname}" %>
       <%= link_to t('settings'), "/settings" %>
       <%= link_to t('logout'), "/logout" %>
