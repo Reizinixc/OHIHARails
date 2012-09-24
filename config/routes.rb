@@ -2,9 +2,19 @@ OHIHARubymine::Application.routes.draw do
 
   resources :self_homework_answer_files
 
-  match '/homeworkfile', :to => 'self_homework_answer_files#index'
-  match '/homeworkfile/new', :to => 'self_homework_answer_files#new'
-  match '/homeworkfile/:id/edit', :to => 'self_homework_answer_files#edit'
+  namespace :homework do
+    namespace :file do
+      match 'new', :to => 'self_homework_answer_files#new'
+      match ':id', :to => root_path
+      match 'edit/:id', :to => 'self_homework_answer_files#edit'
+    end
+
+    namespace :question do
+
+    end
+  end
+
+  #match '/section/new/:course_code', :to => 'sections#new'
 
   get "question_answer/new"
 
@@ -76,18 +86,29 @@ OHIHARubymine::Application.routes.draw do
 
   resources :sections
 
-  resources :courses
-
   root :to => 'user_sessions#new'
 
   match '/login', :to => 'user_sessions#new'
   match '/logout', :to => 'user_sessions#destroy'
   match '/settings', :to => 'users#edit'
 
-  get '/user/:username' => 'users#show'
-
-  resources :users
   resources :user_sessions
+
+  namespace :user do
+    match ':username' => 'users#show'
+    match 'new' => 'users#new'
+  end
+
+  namespace :section do
+    match 'new', :to => 'courses#new'
+    match ':id', :to => 'courses#show'
+  end
+
+  resources :courses, :only => [:index]
+  namespace :course do
+    match 'new', :to => 'courses#new'
+    match ':id', :to => 'courses#show'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
