@@ -8,20 +8,24 @@
 </head>
 <body>
 <header id="header">
-  <a href="/" id="logo">OHIHA | Online Handing in Homework Assistant</a>
+  <a href="<%= root_path %>" id="logo">OHIHA | Online Handing in Homework Assistant</a>
 
   <div id="account_panel">
     <% if current_user %>
-      <%= gravatar_for current_user, 30, 30 %>
+      <%= gravatar_for current_user %>
       <%= link_to header_name, "/user/#{current_user.username}", :class => "username" %>
       <nav>
-        <li><%= link_to t('settings'), "/settings" %></li>
-        <li><%= link_to t('logout'), "/logout" %></li>
+        <ul>
+          <li><%= link_to t('settings'), "/settings" %></li>
+          <li><%= link_to t('logout'), "/logout" %></li>
+        </ul>
       </nav>
-    <% else %>
+  <% else %>
       <nav>
-        <li><%= link_to t('login'), "/login" %></li>
-        <li><%= link_to t('signup'), new_user_path %></li>
+        <ul>
+          <li><%= link_to t('login'), "/login" %></li>
+          <li><%= link_to t('signup'), new_user_path %></li>
+        </ul>
       </nav>
     <% end %>
   </div>

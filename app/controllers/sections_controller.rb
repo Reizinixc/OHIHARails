@@ -68,8 +68,6 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     @section.destroy
 
-    respond_to do |format|
-      format.html { redirect_to sections_url }
-    end
+    redirect_to sections_url
   end
 end
