@@ -6,26 +6,34 @@
  *= require_tree .
 */
 
-@import url("html5reset-1.6.1.css");
+@import "html5reset-1.6.1.css";
+@import "/blueprint/screen.css";
 @import "/fonts/font_roboto_stylesheet.css";
-@import url("/blueprint/screen.css");
 
+/* Global Definition */
 body {
-  margin: 0 auto !important;
   width: 980px;
-  background: #e6f6df;
+  margin: 0 auto !important;
+  background: #f4fceb;
   font-family: "RobotoLight", "Dejavu Sans", "Tahoma", "Meiryo", sans-serif;
 }
 
+/* Header, Wrapper, Footer Gobal Definition */
+#header, #wrapper, #footer {
+  overflow: hidden;
+  clear: both;
+}
+
+/* Header Tab */
 #header {
   height: 35px;
-  padding: 5px;
-  overflow: hidden;
+  padding: 3px 10px;
   box-shadow: 0px 0px 10px #AAA;
   background: rgba(208, 235, 194, 0.4);
   margin-bottom: 10px;
 }
 
+/* Logo link on the top left of the screen */
 #logo {
   float: left;
   display: block;
@@ -39,6 +47,7 @@ body {
   -webkit-transition: 0.4s ease-in opacity;
 }
 
+/* logo link when mouse hovered */
 #logo:hover {
   opacity: 1;
   transition: 0.4s ease-in opacity;
@@ -48,10 +57,10 @@ body {
 
 #account_panel {
   float: right;
-  max-width: 600px;
+  height: 100%;
 }
 
-#account_panel #gravatar {
+#gravatar {
   width: 32px;
   height: 32px;
   margin: 2px 3px;
@@ -68,21 +77,21 @@ body {
 }
 
 #account_panel li {
-  display: inline-block;
-  margin-left: 10px;
+  display: inline;
+  margin-left: 5px;
   height: 100%;
-}
-
-#wrapper {
-  clear: both;
 }
 
 #footer {
   clear: both;
   padding: 5px 10px;
-  font: 14px "Roboto Light";
+  font-size: 14px;
 }
 
-#notice ul {
-  list-style: none outside;
+.notice ul, .notice ol {
+  list-style: none inside;
+}
+
+.notice h2 {
+  margin-top: 0px !important;
 }
