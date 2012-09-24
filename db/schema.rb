@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923151811) do
+ActiveRecord::Schema.define(:version => 20120923190502) do
 
   create_table "courses", :force => true do |t|
     t.string   "course_code",         :null => false
@@ -22,6 +22,35 @@ ActiveRecord::Schema.define(:version => 20120923151811) do
     t.datetime "updated_at",          :null => false
   end
 
+  create_table "homeworks", :force => true do |t|
+    t.integer  "section_id",  :null => false
+    t.string   "title",       :null => false
+    t.text     "description"
+    t.datetime "start_time",  :null => false
+    t.datetime "due_time",    :null => false
+    t.string   "type",        :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.text     "question",             :null => false
+    t.integer  "question_homework_id", :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  create_table "question_answers", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "ip"
+    t.integer  "score"
+    t.string   "reason"
+    t.text     "answer"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "sections", :force => true do |t|
     t.integer  "course_id",  :null => false
     t.string   "year",       :null => false
@@ -30,6 +59,21 @@ ActiveRecord::Schema.define(:version => 20120923151811) do
     t.boolean  "is_suspend", :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "self_homework_answer_files", :force => true do |t|
+    t.integer  "user_id",           :null => false
+    t.integer  "self_homework_id",  :null => false
+    t.string   "ip"
+    t.integer  "score"
+    t.string   "reason"
+    t.text     "description"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "ta", :force => true do |t|

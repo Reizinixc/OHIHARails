@@ -1,0 +1,16 @@
+<%= form_for @self_homework_answer_file, :html => { :multipart => true } do |f| %>
+  <%= render :partial => "shared/user_error", :locals => { :model_object => @self_homework_answer_file } %>
+
+  <div class="actions">
+    <div class="field">
+      <%= f.label :file %><br/>
+      <%= f.file_field :file %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br/>
+      <%= f.text_area :description %>
+    </div>
+
+    <%= f.submit %>
+  </div>
+<% end %>

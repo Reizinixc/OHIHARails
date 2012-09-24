@@ -1,0 +1,21 @@
+<h1>Listing self_homework_answer_files</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @self_homework_answer_files.each do |self_homework_answer_file| %>
+  <tr>
+    <td><%= link_to 'Show', self_homework_answer_file %></td>
+    <td><%= link_to 'Edit', edit_self_homework_answer_file_path(self_homework_answer_file) %></td>
+    <td><%= link_to 'Destroy', self_homework_answer_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Self homework answer file', new_self_homework_answer_file_path %>

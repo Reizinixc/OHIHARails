@@ -1,4 +1,7 @@
 class QuestionAnswerController < ApplicationController
+
+  before_filter :require_login, :except => []
+
   def new
   end
 

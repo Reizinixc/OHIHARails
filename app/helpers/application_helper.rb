@@ -1,15 +1,13 @@
 module ApplicationHelper
 
-  def gravatar_for(user, width, height)
+  def gravatar_for(user)
     gravatar_id  = Digest::MD5::hexdigest(user.alt_email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     desc         = "#{user.name} #{user.lastname}'s photo"
     image_tag gravatar_url,
               :alt    => desc,
               :title  => desc,
-              :id     => "gravatar",
-              :width  => width,
-              :height => height
+              :id     => "gravatar"
   end
 
   def title(title)

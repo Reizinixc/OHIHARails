@@ -1,3 +1,50 @@
-// Place all the styles related to the UserSessions controller here.
+// Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#login-panel {
+  margin: 30px auto 0px auto;
+  width: 800px;
+
+  & h2 {
+    font: 22px bold "Roboto";
+    margin: 30px 0px 15px 0px;
+  }
+
+  & p {
+    font-size: 16px;
+    line-height: 1.1em;
+    margin-bottom: 15px;
+  }
+
+  & .field {
+    margin-top: 10px;
+  }
+
+  & input[type=button], input[type=submit] {
+    border-radius: 7px;
+    border: none;
+    padding: 5px 10px 5px 10px;
+    background: #34a926;
+    color: white;
+    width: auto;
+    margin: 7px 70px;
+    box-shadow: 0px 0px 5px #CCC;
+  }
+
+  & #background {
+    float: left;
+    width: 360px;
+    height: 400px;
+    background-image: url("/images/background_login.png");
+    margin-right: 30px;
+  }
+
+  & #new_user_session {
+    float: right;
+    width: 410px;
+  }
+
+  & .error_explanation {
+    width: 100%;
+  }
+}

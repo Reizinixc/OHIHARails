@@ -1,14 +1,12 @@
 <h1>Listing users</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Login</th>
     <th>Name</th>
     <th>Lastname</th>
     <th>Email</th>
     <th>Alt email</th>
-    <th>Last login at</th>
-    <th>Last login ip</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,8 +19,6 @@
     <td><%= user.lastname %></td>
     <td><%= user.email %></td>
     <td><%= user.alt_email %></td>
-    <td><%= user.last_login_at %></td>
-    <td><%= user.last_login_ip %></td>
     <td><%= link_to 'Show', "/user/#{user.username}" %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

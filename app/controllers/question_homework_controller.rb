@@ -1,4 +1,7 @@
 class QuestionHomeworkController < ApplicationController
+
+  before_filter :require_teacher, :except => []
+
   def new
   end
 

@@ -52,24 +52,32 @@ class ApplicationController < ActionController::Base
 
   def require_teacher
     if current_user
-      unless teacher?
+      unless teacher? or admin?
         flash[:error] = "You must be a #{t('teacher')} to continue"
         redirect_to "/user/#{current_user.username}"
       end
     else
       require_login
     end
-
   end
 
   def require_admin
     if current_user
-      unless teacher?
+      unless admin?
         flash[:error] = "You must be a #{t('admin')} to continue"
         redirect_to "/user/#{current_user.username}"
       end
     else
       require_login
+    end
+  end
+
+  def ta?(section)
+    begin
+      result = TA.where "user_id = ? AND section_id = ?", current_user.id, section.id
+      result.any?
+    rescue
+      false
     end
   end
 end

@@ -1,5 +1,11 @@
 OHIHARubymine::Application.routes.draw do
 
+  resources :self_homework_answer_files
+
+  match '/homeworkfile', :to => 'self_homework_answer_files#index'
+  match '/homeworkfile/new', :to => 'self_homework_answer_files#new'
+  match '/homeworkfile/:id/edit', :to => 'self_homework_answer_files#edit'
+
   get "question_answer/new"
 
   get "question_answer/create"
