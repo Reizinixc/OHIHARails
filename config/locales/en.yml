@@ -13,3 +13,4 @@ en:
   settings: "Edit Profile"
   teacher: "Sensei"
   admin: "Admini"
+  error_login_first: "Please login first."

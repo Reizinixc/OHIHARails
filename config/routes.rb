@@ -1,5 +1,75 @@
 OHIHARubymine::Application.routes.draw do
 
+  get "question_answer/new"
+
+  get "question_answer/create"
+
+  get "question_answer/edit"
+
+  get "question_answer/update"
+
+  get "question_answer/destroy"
+
+  get "item/new"
+
+  get "item/create"
+
+  get "item/edit"
+
+  get "item/update"
+
+  get "item/destroy"
+
+  get "self_homework_answer_file/new"
+
+  get "self_homework_answer_file/create"
+
+  get "self_homework_answer_file/edit"
+
+  get "self_homework_answer_file/update"
+
+  get "self_homework_answer_file/destroy"
+
+  get "question_homework/new"
+
+  get "question_homework/create"
+
+  get "question_homework/edit"
+
+  get "question_homework/update"
+
+  get "question_homework/destroy"
+
+  get "self_homework/new"
+
+  get "self_homework/create"
+
+  get "self_homework/edit"
+
+  get "self_homework/update"
+
+  get "self_homework/destroy"
+
+  get "teach/new"
+
+  get "teach/create"
+
+  get "teach/destroy"
+
+  get "takes/new"
+
+  get "takes/create"
+
+  get "takes/destroy"
+
+  get "ta/new"
+
+  get "ta/create"
+
+  get "ta/destroy"
+
+  resources :sections
+
   resources :courses
 
   root :to => 'user_sessions#new'

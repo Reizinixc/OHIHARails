@@ -1,4 +1,7 @@
 class Course < ActiveRecord::Base
+
+  has_many :section, :dependent => :destroy
+
   attr_accessible :course_code,
                   :english_course_name,
                   :thai_course_name,
