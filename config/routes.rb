@@ -2,14 +2,20 @@ OHIHARubymine::Application.routes.draw do
 
   root :to => 'user_sessions#new'
 
+  resources :users
+  match 'user/new' => 'users#new'
+
+  match '/login', :to => 'user_sessions#new'
+  match '/logout', :to => 'user_sessions#destroy'
+  match '/settings', :to => 'users#edit'
+
+
   namespace :QuestionAnswer do
     match 'new' => "question_answer#new"
     match ':id' => "user_sessions#new"
     match 'edit/:id' => "question_answer#edit"
     match 'destroy/:id' => "question_answer#destroy"
   end
-
-  get 'homeworks/index'
 
   match 'homeworks' => 'homeworks#index', :method => 'get'
 
@@ -77,20 +83,7 @@ OHIHARubymine::Application.routes.draw do
 
   resources :sections
 
-  match '/login', :to => 'user_sessions#new'
-  match '/logout', :to => 'user_sessions#destroy'
-  match '/settings', :to => 'users#edit'
-
   resources :user_sessions
-
-
-  resources :users, :only => [:index]
-
-  namespace :user do
-    match ':username' => 'users#show'
-    match 'new' => 'users#new'
-  end
-
 
   resources :courses, :only => [:index]
 

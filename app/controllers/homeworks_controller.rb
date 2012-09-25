@@ -4,7 +4,7 @@ class HomeworksController < ApplicationController
 
   def index
     sections = []
-    table = teacher? or admin? ? Teach : Takes
+    table = (teacher? or admin?) ? Teach : Takes
 
     # show homework management data
     table.find_by_user(current_user).each do |r|

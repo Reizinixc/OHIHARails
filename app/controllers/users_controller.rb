@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :require_not_login, :only => [:new, :create]
-  before_filter :require_login, :except => [:new, :create, :destroy]
+  before_filter :require_login, :except => [:new, :create]
 
   # GET /users
   def index
@@ -31,12 +31,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    respond_to do |format|
-      if @user.save
-        redirect_to "/user/#{@user.username}", :notice => 'User was successfully created.'
-      else
-        render action => "new"
-      end
+    if @user.save
+      redirect_to "/user/#{@user.username}", :notice => 'User was successfully created.'
+    else
+      render :action => "new"
     end
   end
 
