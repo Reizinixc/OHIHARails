@@ -39,5 +39,4 @@ class HomeworksController < ApplicationController
   def download
     # Do something for get all the student homework
   end
-
 end

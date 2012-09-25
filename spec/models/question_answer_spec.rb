@@ -4,7 +4,7 @@ describe QuestionAnswer do
   context "Data Schema" do
     it { should have_db_column(:user_id).of_type(:integer) }
     it { should have_db_column(:item_id).of_type(:integer) }
-    it { should have_db_column(:ip).of_type(:string)}
+    it { should have_db_column(:ip).of_type(:string) }
     it { should have_db_column(:score).of_type(:int) }
     it { should have_db_column(:reason).of_type(:string) }
     it { should have_db_column(:answer).of_type(:text) }
@@ -28,11 +28,11 @@ describe QuestionAnswer do
   context "Add a question answer" do
     before(:each) do
       @question = QuestionAnswer.new(:item_id => "12",
-                             :item_id => "3",
-                             :ip => "158.108.12.32",
-                             :score => "12",
-                             :reason => "you best",
-                             :answer => "I'm right.")
+                                     :item_id => "3",
+                                     :ip      => "158.108.12.32",
+                                     :score   => "12",
+                                     :reason  => "you best",
+                                     :answer  => "I'm right.")
     end
 
     it "must be valid by a default attribute" do
@@ -52,5 +52,5 @@ describe QuestionAnswer do
         @section.should have(1).error_on(:ip)
       end
     end
-    end
+  end
 end
