@@ -21,7 +21,7 @@ describe QuestionAnswer do
     it { should validate_format_of(:item_id).with /[0-9]/ }
     it { should validate_presence_of :item_id }
     it { should validate_uniqueness_of :user_id }
-    it { should validate_format_of(:ip).with /[0-9]{3}.[0-9]{3}.[0-9]{3}.[0-9]{3}/ }
+    it { should validate_format_of(:ip).with /[0-9]{:3}.[0-9]{:3}.[0-9]{:3}.[0-9]{:3}/ }
     it { should validate_presence_of :user_id }
   end
 
@@ -41,13 +41,13 @@ describe QuestionAnswer do
 
     describe "question_answer" do
       it "should be digits course code" do
-        @question.section_id = "asdk"
+        @question.course_id = "asdk"
         @question.should_not_valid
         @question.should have(1).error_on(:question_id)
       end
 
       it "not is ip should xxx.xxx.xxx.xxx x is digit." do
-        @section.section_id = "xxx.123.321.132"
+        @section.ip = "xxx.123.321.132"
         @section.should_not_valid
         @section.should have(1).error_on(:ip)
       end
