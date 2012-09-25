@@ -10,7 +10,7 @@ describe Course do
   end
 
   context "Association" do
-    pending "Test when Section model generated"
+    it { should belong_to :section }
   end
 
   context "Validation" do
