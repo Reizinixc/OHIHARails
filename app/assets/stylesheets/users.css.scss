@@ -3,11 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .table {
   margin: 0 auto;
-  width: 80%;
-  border-collapse: collapse;
+  width: 90%;
+  border-collapse: separate;
+  border: 1px solid;
+  margin-top: 20px;
+  color: red;
+  border-spacing: 1px;
+  table-layout: auto;
+  font-family: robotobold;
 }
 
 .table td {
   padding: 2px;
   line-height: 1.2em;
+}
+
+.bgstyle{
+  float: left;
+  width: 840px;
+  height: 800px;
+  background-image: url("/images/Nuri_snow.jpg");
+  opacity: .60;
 }
