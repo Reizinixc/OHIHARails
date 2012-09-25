@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe QuestionHomework do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "Association" do
+    it { should belong_to :homework }
+    it { should have_many :item }
+  end
 end
