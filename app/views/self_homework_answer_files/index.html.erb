@@ -9,13 +9,13 @@
 
 <% @self_homework_answer_files.each do |self_homework_answer_file| %>
   <tr>
-    <td><%= link_to 'Show', self_homework_answer_file %></td>
-    <td><%= link_to 'Edit', edit_self_homework_answer_file_path(self_homework_answer_file) %></td>
-    <td><%= link_to 'Destroy', self_homework_answer_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', "/homeworkfile/#{self_homework_answer_file.id}" %></td>
+    <td><%= link_to 'Edit', "/homeworkfile/edit/#{self_homework_answer_file.id}" %></td>
+    <td><%= link_to 'Destroy', '/homeworkfile', method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Self homework answer file', new_self_homework_answer_file_path %>
+<%= link_to 'New homework answer file', '/homeworkfile/new' %>

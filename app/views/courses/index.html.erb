@@ -1,27 +1,31 @@
 <h1>Listing courses</h1>
 
-<table>
+<table id="table">
   <tr>
     <th>Course code</th>
     <th>Thai course name</th>
     <th>English course name</th>
     <th></th>
     <th></th>
-    <th></th>
+    <% if admin? %>
+      <th></th>
+    <% end %>
   </tr>
 
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= course.course_code %></td>
-    <td><%= course.thai_course_name %></td>
-    <td><%= course.english_course_name %></td>
-    <td><%= link_to 'Show', course %></td>
-    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-    <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.course_code %></td>
+      <td><%= course.thai_course_name %></td>
+      <td><%= course.english_course_name %></td>
+      <td><%= link_to "Add Section", "/section/new/#{course.course_code}" %></td>
+      <td><%= link_to 'Edit', "/section/edit/#{course.id}" %></td>
+      <% if admin? %>
+        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
 
-<br />
+<br/>
 
 <%= link_to 'New Course', new_course_path %>

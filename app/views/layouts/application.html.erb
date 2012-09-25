@@ -45,10 +45,10 @@
     <nav id="main-menu">
       <ul>
         <li><%= link_to "User", users_path %></li>
-        <li><%= link_to "Homework", '/homeworkfile' %></li>
+        <li><%= link_to "Homework", '/homeworks' %></li>
         <li><%= link_to "Section", sections_path %></li>
         <li><%= link_to "Course", courses_path %></li>
-        <li><%= link_to "Result", users_path, flash[:notice] => "Coming Soon!" %></li>
+        <li><%= link_to "Result", users_path, :notice => "Coming Soon!" %></li>
       </ul>
     </nav>
   <% end %>

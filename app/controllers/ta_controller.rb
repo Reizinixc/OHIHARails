@@ -13,7 +13,7 @@ class TaController < ApplicationController
     @ta.user_id = current_user.id
 
     begin
-      Section.find(@ta.section_id)
+      Section.readonly.find(@ta.section_id)
     rescue
       flash[:notice] = "Section is not valid"
       redirect_to :action => :new

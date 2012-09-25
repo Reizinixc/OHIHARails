@@ -2,22 +2,26 @@
   <%= render :partial => "shared/user_error", :locals => {:model_object => @section} %>
 
   <div class="field">
+    <%= f.label "Course Code" %><br />
+    <%= f.text_field :course_id %>
+  </div>
+  <div class="field">
     <%= f.label :year %><br />
     <%= f.text_field :year %>
   </div>
   <div class="field">
     <%= f.label :semester %><br />
-    <%= f.number_field :semester %>
+    <%= f.number_field :semester, :min => 0, :max => 6 %>
   </div>
   <div class="field">
     <%= f.label :section %><br />
-    <%= f.number_field :section %>
+    <%= f.number_field :section, :min => 0 %>
   </div>
   <div class="field">
     <%= f.label :is_suspend %><br />
     <%= f.check_box :is_suspend %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Add a new Section", :disable_with => "Adding..." %>
   </div>
 <% end %>

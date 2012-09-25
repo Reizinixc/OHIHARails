@@ -1,10 +1,10 @@
 class SelfHomeworkAnswerFile < ActiveRecord::Base
 
   belongs_to :user
-  validates_associated :user
+  validates_presence_of :user
 
   belongs_to :self_homework
-  validates_associated :self_homework
+  validates_presence_of :self_homework
 
   attr_accessible :user_id,
                   :self_homework_id,
@@ -15,7 +15,7 @@ class SelfHomeworkAnswerFile < ActiveRecord::Base
                   :file
 
   has_attached_file :file, {
-      :path        => ":rails_root/public/files/homeworks/:homework_id/:user_id-:filename",
+      :path        => ":rails_root/public/files/homeworks/:homework_id/:username-:filename",
       :url         => "/files/homeworks/:homework_id/:hash/:filename",
       :hash_secret => "159357#{Time.current.to_s}753951"
   }
@@ -24,8 +24,8 @@ class SelfHomeworkAnswerFile < ActiveRecord::Base
     attachment.instance.self_homework_id
   end
 
-  Paperclip.interpolates :user_id do |attachment, styles|
-    attachment.instance.user_id
+  Paperclip.interpolates :username do |attachment, styles|
+    attachment.instance.username
   end
 
 

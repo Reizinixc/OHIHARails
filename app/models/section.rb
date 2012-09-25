@@ -15,12 +15,12 @@ class Section < ActiveRecord::Base
                   :semester,
                   :year,
                   :is_suspend,
-                  :course_id
+                  :course_id,
+                  :course_code
 
   validates :section,
             :semester,
             :year,
-            :is_suspend,
             :course_id, :presence => true
 
   validates :section, :numericality => { :greater_than => 0 }

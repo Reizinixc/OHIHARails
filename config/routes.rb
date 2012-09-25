@@ -1,30 +1,29 @@
 OHIHARubymine::Application.routes.draw do
 
-  resources :self_homework_answer_files
+  root :to => 'user_sessions#new'
 
-  namespace :homework do
-    namespace :file do
-      match 'new', :to => 'self_homework_answer_files#new'
-      match ':id', :to => root_path
-      match 'edit/:id', :to => 'self_homework_answer_files#edit'
-    end
-
-    namespace :question do
-
-    end
+  namespace :QuestionAnswer do
+    match 'new' => "question_answer#new"
+    match ':id' => "user_sessions#new"
+    match 'edit/:id' => "question_answer#edit"
+    match 'destroy/:id' => "question_answer#destroy"
   end
 
-  #match '/section/new/:course_code', :to => 'sections#new'
+  get 'homeworks/index'
 
-  get "question_answer/new"
+  match 'homeworks' => 'homeworks#index', :method => 'get'
 
-  get "question_answer/create"
+  namespace :SelfHomework do
+    match '' => "self_homework#index"
+    match 'new' => "self_homework#new"
+    match ':id' => "self_homework#show"
+    match 'edit/:id' => "self_homework#edit"
+    match 'destroy/:id' => "self_homework#destroy"
+  end
 
-  get "question_answer/edit"
+  namespace :QuestionHomework do
 
-  get "question_answer/update"
-
-  get "question_answer/destroy"
+  end
 
   get "item/new"
 
@@ -35,16 +34,6 @@ OHIHARubymine::Application.routes.draw do
   get "item/update"
 
   get "item/destroy"
-
-  get "self_homework_answer_file/new"
-
-  get "self_homework_answer_file/create"
-
-  get "self_homework_answer_file/edit"
-
-  get "self_homework_answer_file/update"
-
-  get "self_homework_answer_file/destroy"
 
   get "question_homework/new"
 
@@ -84,9 +73,9 @@ OHIHARubymine::Application.routes.draw do
 
   get "ta/destroy"
 
-  resources :sections
+  resources :self_homework_answer_files
 
-  root :to => 'user_sessions#new'
+  resources :sections
 
   match '/login', :to => 'user_sessions#new'
   match '/logout', :to => 'user_sessions#destroy'
@@ -94,20 +83,27 @@ OHIHARubymine::Application.routes.draw do
 
   resources :user_sessions
 
+
+  resources :users, :only => [:index]
+
   namespace :user do
     match ':username' => 'users#show'
     match 'new' => 'users#new'
   end
 
-  namespace :section do
+
+  resources :courses, :only => [:index]
+
+  namespace :course do
+    post '', :to => 'courses#create'
     match 'new', :to => 'courses#new'
     match ':id', :to => 'courses#show'
   end
 
-  resources :courses, :only => [:index]
-  namespace :course do
-    match 'new', :to => 'courses#new'
-    match ':id', :to => 'courses#show'
+
+  namespace :section do
+    match 'new', :to => 'sections#new'
+    match ':id', :to => 'sections#show'
   end
 
   # The priority is based upon order of creation:

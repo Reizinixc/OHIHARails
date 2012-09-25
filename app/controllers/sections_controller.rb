@@ -22,11 +22,8 @@ class SectionsController < ApplicationController
 
   # GET /sections/new
   def new
-    @section = Section.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
+    @section           = Section.new
+    @section.course_id = params[:course_code]
   end
 
   # GET /sections/1/edit
@@ -37,19 +34,20 @@ class SectionsController < ApplicationController
   # POST /sections
   # POST /sections.json
   def create
-    @section = Section.new(params[:section])
-
-    respond_to do |format|
-      if @section.save
-        format.html { redirect_to @section, notice: 'Section was successfully created.' }
-      else
-        format.html { render action: "new" }
-      end
+    @section        = Section.new(params[:section])
+    @section.course = Course.find_by_course_code(params[:section][:course_id])
+    if Section.where("course_id = ? AND section = ? AND year = ? AND section = ?", @section.course, @section.section, @section.year, @section.section).any?
+      flash[:notice] = "This section in this course was created"
+      render :action => "new"
+    elsif @section.save
+        redirect_to @section, :notice => "Section was successfully created."
+    else
+      render action: "new"
     end
   end
 
-  # PUT /sections/1
-  # PUT /sections/1.json
+# PUT /sections/1
+# PUT /sections/1.json
   def update
     @section = Section.find(params[:id])
 
@@ -62,12 +60,13 @@ class SectionsController < ApplicationController
     end
   end
 
-  # DELETE /sections/1
-  # DELETE /sections/1.json
+# DELETE /sections/1
+# DELETE /sections/1.json
   def destroy
     @section = Section.find(params[:id])
     @section.destroy
 
     redirect_to sections_url
   end
+
 end
