@@ -94,12 +94,18 @@ body {
   background: rgba(255, 244, 206, 0.6);
   width: 90%;
   margin: 10px auto;
+  padding: 10px 15px;
   color: #513322;
   box-shadow: 0px 0px 7px rgba(246, 146, 72, 0.3);
 }
 
 #notice ul, #notice ol {
   list-style: none inside;
+}
+
+#notice li {
+  font: 16px/1.5em !important;
+  line-height: 1.2em;
 }
 
 #notice h2 {

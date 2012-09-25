@@ -4,19 +4,23 @@ class HomeworksController < ApplicationController
 
   def index
     sections = []
-    table = (teacher? or admin?) ? Teach : Takes
-
-    # show homework management data
-    table.find_by_user(current_user).each do |r|
-      sections << r.section_id
+    if teacher? or admin?
+      Teach.find_all_by_user_id(current_user).each do |r|
+        sections << r.section_id
+      end
+    else
+      Takes.find_all_by_user_id(current_user).each do |r|
+        sections << r.section_id
+      end
     end
+    # show homework management data
     begin
       @homeworks = Homework.find sections
-    rescue RecordNotFound
+    rescue RecordNotFound.new
       # Redirect to 501 pages
-
     end
   end
+
 
   def create
     # Go to homepage create
@@ -28,7 +32,7 @@ class HomeworksController < ApplicationController
     if is_self_homework?
       # Redirect to Single homework sending page
     else
-      # Redirect to QUestion homework page
+      # Redirect to Question homework page
     end
   end
 

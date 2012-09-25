@@ -2,8 +2,13 @@ OHIHARubymine::Application.routes.draw do
 
   root :to => 'user_sessions#new'
 
+  resources :user_sessions
   resources :users
-  match 'user/new' => 'users#new'
+
+  match '/users' => 'users#index'
+  match '/user/new' => 'users#new'
+
+  match '/user/:username' => 'users#show'
 
   match '/login', :to => 'user_sessions#new'
   match '/logout', :to => 'user_sessions#destroy'
@@ -17,7 +22,7 @@ OHIHARubymine::Application.routes.draw do
     match 'destroy/:id' => "question_answer#destroy"
   end
 
-  match 'homeworks' => 'homeworks#index', :method => 'get'
+  match '/homeworks' => 'homeworks#index'
 
   namespace :SelfHomework do
     match '' => "self_homework#index"
@@ -82,8 +87,6 @@ OHIHARubymine::Application.routes.draw do
   resources :self_homework_answer_files
 
   resources :sections
-
-  resources :user_sessions
 
   resources :courses, :only => [:index]
 
