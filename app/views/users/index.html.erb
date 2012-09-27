@@ -1,19 +1,16 @@
 <h1>Listing users</h1>
-
-<div style="font-family: 'RobotoBold'; color: #2f4f4f;">
-<br/><h1>Listing users</h1><br/>
-</div>
 <div class="bgstyle">
   <table id="table">
     <tr>
-      <th>Login</th>
+      <th>Username</th>
       <th>Name</th>
       <th>Lastname</th>
       <th>Email</th>
-      <th>Alt email</th>
+      <th>Alt. email</th>
       <th></th>
-      <th></th>
-      <th></th>
+      <% if admin? %>
+        <th></th>
+      <% end %>
     </tr>
 
     <% @users.each do |user| %>
@@ -24,12 +21,10 @@
         <td><%= user.email %></td>
         <td><%= user.alt_email %></td>
         <td><%= link_to 'Show', "/user/#{user.username}" %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if admin? %>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>
-
-  <br/>
-
-  <%= link_to 'New User', new_user_path %>
 </div>

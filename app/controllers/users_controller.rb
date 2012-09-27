@@ -11,8 +11,12 @@ class UsersController < ApplicationController
 
   # GET /users/:username
   def show
-    @user  = User.find_by_username(params[:username])
-    @title = "#{@user.name} #{@user.lastname}"
+    begin
+      @user = User.find_by_username(params[:username])
+      @title = "#{@user.name} #{@user.lastname}"
+    rescue NoMethodError
+      redirect_to "/user/#{params[:id]}"
+    end
   end
 
   # GET /users/new
@@ -43,13 +47,11 @@ class UsersController < ApplicationController
     #@user = User.find(params[:username])
     @user = User.find_by_username(params[:id])
 
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        #format.html { redirect_to users_url, notice: 'User was successfully updated.' }
-        redirect_to "/user/#{@user.username}", :notice => 'User was successfully updated.'
-      else
-        render action: "edit"
-      end
+    if @user.update_attributes(params[:user])
+      #format.html { redirect_to users_url, notice: 'User was successfully updated.' }
+      redirect_to "/user/#{@user.username}", :notice => 'User was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 

@@ -2,17 +2,19 @@ OHIHARubymine::Application.routes.draw do
 
   root :to => 'user_sessions#new'
 
-  resources :user_sessions
-  resources :users
 
+
+  resources :users
+  match 'user', :to => 'users#index', :method => "get"
   match '/users' => 'users#index'
   match '/user/new' => 'users#new'
-
   match '/user/:username' => 'users#show'
+  #match '/user/:id', :to => 'users#show', :method => 'PUT'
+  match '/settings', :to => 'users#edit'
 
   match '/login', :to => 'user_sessions#new'
   match '/logout', :to => 'user_sessions#destroy'
-  match '/settings', :to => 'users#edit'
+  resources :user_sessions
 
 
   namespace :QuestionAnswer do
@@ -23,6 +25,11 @@ OHIHARubymine::Application.routes.draw do
   end
 
   match '/homeworks' => 'homeworks#index'
+  match '/homework/new' => 'homeworks#new'
+  match '/homework/:id/edit' => 'homeworks#edit'
+  match '/homework/:id/handin' => 'homeworks#handin'
+  resource :homeworks
+
 
   namespace :SelfHomework do
     match '' => "self_homework#index"
@@ -85,6 +92,8 @@ OHIHARubymine::Application.routes.draw do
   get "ta/destroy"
 
   resources :self_homework_answer_files
+
+  match '/homework/file/new', :to => "self_homework_answer_files#new"
 
   resources :sections
 

@@ -6,49 +6,50 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 <header id="header">
-  <a href="<%= root_path %>" id="logo">OHIHA | Online Handing in Homework Assistant</a>
+  <div class="container">
+    <%= link_to "OHIHA | Online Handing in Homework Assistant", root_path, :title => "OHIHA | Online Handing in Homework Assistant", :id => "logo" %>
 
-  <div id="account_panel">
-    <% if current_user %>
-      <%= gravatar_for current_user %>
-      <%= link_to header_name, "/user/#{current_user.username}", :class => "username" %>
-      <nav>
-        <ul>
-          <li><%= link_to t('settings'), "/settings" %></li>
-          <li><%= link_to t('logout'), "/logout" %></li>
-        </ul>
-      </nav>
-    <% else %>
-      <nav>
-        <ul>
-          <li><%= link_to t('login'), "/login" %></li>
-          <li><%= link_to t('signup'), "/user/new" %></li>
-        </ul>
-      </nav>
-    <% end %>
+    <div id="account_panel">
+      <% if current_user %>
+        <%= gravatar_for current_user %>
+        <%= link_to header_name, "/user/#{current_user.username}", :class => "username" %>
+        <nav>
+          <ul>
+            <li><%= link_to t('settings'), "/settings" %></li>
+            <li><%= link_to t('logout'), "/logout" %></li>
+          </ul>
+        </nav>
+      <% else %>
+        <nav>
+          <ul>
+            <li><%= link_to t('login'), "/login" %></li>
+            <li><%= link_to t('signup'), "/user/new" %></li>
+          </ul>
+        </nav>
+      <% end %>
+    </div>
   </div>
 </header>
 
-<div id="wrapper">
+<div id="wrapper" class="container">
   <% if flash.any? %>
-    <div id="notice">
-      <ul>
-        <% flash.each do |key, value| %>
-          <li class="<%= key %>"><%= value %></li>
-        <% end %>
-      </ul>
-    </div>
+    <ul id="notice">
+      <% flash.each do |key, value| %>
+        <li class="<%= key %>"><%= value %></li>
+      <% end %>
+    </ul>
   <% end %>
   <% if current_user %>
     <nav id="main-menu">
       <ul>
-        <li><%= link_to "User", users_path %></li>
+        <li><%= link_to "Dashboard", users_path, :class => "left-corner" %></li>
         <li><%= link_to "Homework", '/homeworks' %></li>
         <li><%= link_to "Section", sections_path %></li>
         <li><%= link_to "Course", courses_path %></li>
-        <li><%= link_to "Result", users_path, :notice => "Coming Soon!" %></li>
+        <li><%= link_to "Help", users_path, :notice => "Coming Soon!", :class => "right-corner" %></li>
       </ul>
     </nav>
   <% end %>
@@ -57,8 +58,10 @@
 </div>
 
 <footer id="footer">
-  2012 OHIHA Project. Some rights reseved.<br/>
-  The OHIHA Project is a part of Software Design Development &amp; System Analysis and Design.
+  <div class="container">
+    2012 OHIHA Project. Some rights reseved.<br/>
+    The OHIHA Project is a part of Software Design Development &amp; System Analysis and Design.
+  </div>
 </footer>
 
 </body>

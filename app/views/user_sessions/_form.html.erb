@@ -1,17 +1,10 @@
-<%= form_for(@user_session) do |f| %>
-  <%= render :partial => "shared/user_error", :locals => {:model_object => @user_session} %>
+<%= form_for(@user_session, :id => "bg_right") do |f| %>
+  <%= render :partial => "shared/user_error", :locals => { :model_object => @user_session } %>
 
-    <div class="field">
-      <%= f.label :username %>
-      <br/>
-      <%= f.text_field :username %>
-    </div>
-    <div class="field">
-      <%= f.label :password %>
-      <br/>
-      <%= f.password_field :password %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Sign in", :disable_with => "Signing in..." %>
-    </div>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit "Sign in", :disable_with => "Signing in...", :class => "action-btn green" %>
 <% end %>

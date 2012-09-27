@@ -5,6 +5,7 @@ class UserSessionsController < ApplicationController
 
   def new
     @user_session = UserSession.new
+    @title = "Login Required"
   end
 
   def create

@@ -1,13 +1,8 @@
 <% if model_object.errors.any? %>
-  <!--<div id="error_explanation">-->
-    <div id="notice">
-      <h2><%= pluralize(model_object.errors.count, "error") %> prohibited this course from being saved:</h2>
-
-      <ul>
-        <% model_object.errors.full_messages.each do |msg| %>
-          <li><span style="color: red;"><%= msg %></span></li>
-        <% end %>
-      </ul>
-    </div>
-  <!--</div>-->
+  <!--<h2><%= pluralize(model_object.errors.count, "error") %> prohibited this course from being saved:</h2>-->
+  <ul id="error-explanation">
+    <% model_object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
 <% end %>

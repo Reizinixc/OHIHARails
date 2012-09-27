@@ -1,46 +1,11 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-#table {
+#field {
+  background: #EEE;
+  width: 260px;
   margin: 0 auto;
-  width: 90%;
-  border-collapse: separate;
-  border: 1px solid;
-  margin-top: 20px;
-  color: red;
-  border-spacing: 1px;
-  table-layout: auto;
-  font-family: "RobotoBold";
+  border-radius: 5px;
+  padding: 15px;
+}
 
-  & td {
-    padding: 3px;
-  }
-
-  & tr:nth-child(1) * {
-    background-color: #133D0D !important;
-    text-align: center;
-    line-height: 2em;
-    color: white;
-  }
-
-  & tr:nth-child(odd) {
-    background-color: #e2f4cd !important;
-  }
-
-  & tr:nth-child(even) {
-    background-color: #e8f9e4 !important;
-  }
-
-  & td {
-    padding: 2px;
-    line-height: 1.2em;
-  }
-
-  & .bgstyle {
-    float: left;
-    width: 840px;
-    height: 800px;
-    background-image: url("/images/Nuri_snow.jpg");
-    opacity: .60;
-  }
+#field * {
+  max-height: 240px;
 }

@@ -1,7 +1,10 @@
 <div id="login-panel">
-  <div id="background">
+  <%= image_tag get_desc_pic_url, :title => "ภาพปลากรอบ", :id => "bg-left" %>
+  <div id="bg-right">
+    <h1>Login Required</h1>
+
+    <p lang="th">กรุณาเข้าสู่ระบบด้วยบัญชีผู้ใช้ของ OHIHA หากไม่มีบัญชีในการเข้าสู่ระบบ
+      ท่านสามารถสมัครสมาชิกได้<%= link_to "ที่นี่", '/user/new', :lang => "th" %></p>
+    <%= render 'user_sessions/form' %>
   </div>
-  <h2 class="title">Login Required!</h2>
-  <p>We consider you to log in to continue with Nontri account</p>
-  <%= render 'form' %>
 </div>

@@ -21,6 +21,9 @@ class HomeworksController < ApplicationController
     end
   end
 
+  def new
+    @homework
+  end
 
   def create
     # Go to homepage create

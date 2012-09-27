@@ -1,0 +1,371 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree .
+*/
+
+@import "html5reset-1.6.1.css";
+@import "../fonts/font_roboto_stylesheet.css";
+
+
+/***** Old styleshit *****/
+/* Navigation Menu */
+#table {
+  margin: 0 auto;
+  width: 95%;
+  border-collapse: collapse;
+}
+
+#table td {
+  padding: 3px;
+}
+
+#table tr:nth-child(1) * {
+  background-color: #133D0D !important;
+  text-align: center;
+  line-height: 2em;
+  color: white;
+}
+
+#table tr:nth-child(odd) {
+  background-color: #e2f4cd !important;
+}
+
+#table tr:nth-child(even) {
+  background-color: #e8f9e4 !important;
+}
+
+#table td {
+  padding: 2px;
+  line-height: 1.2em;
+}
+
+// ------------------------------------- NEW Stylesheet ---------------------------------------
+
+/***** Mixin Definitions *****/
+@mixin div-shadow($shadow-blur-width) {
+  box-shadow: 0px 1px $shadow-blur-width #DDD;
+}
+
+@mixin general-shadow {
+  @include div-shadow(4px);
+}
+
+@mixin content-pane($shadow-blur-width: 15px) {
+  @include div-shadow($shadow-blur-width);
+}
+
+@mixin clearfix {
+  &:after {
+    content: ".";
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+@mixin passage {
+  text-indent: 25px;
+  margin-bottom: 10px;
+}
+
+@mixin font-normal {
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+@mixin font-customize($font-size, $line-height, $font-family: inherit) {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+@mixin div-center {
+  margin: 0 auto;
+}
+
+
+/***** Global Definition *****/
+$anim-delay: 0.4s;
+$header-height: 40px;
+$shadow-color: #DDD;
+
+* {
+  font-weight: normal;
+  -webkit-font-size-adjust: 0.58;
+  font-size-adjust: 0.58;
+}
+
+body {
+  background: #F0FEED;
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", Helvetica, Meiryo, "TH Sarabun New", Tahoma, Thonburi, sans-serif;
+  color: #222;
+}
+
+*[lang="th"] {
+  font: 16pt/18pt "TH Sarabun New";
+}
+
+*[lang="ja"] {
+  font: inherit;
+  font-family: Meiryo, sans-seif;
+}
+
+a, a:visited {
+  color: #596b16;
+  -moz-transition: $anim-delay ease-out color;
+  -webkit-transition: $anim-delay ease-out color;
+  -ms-transition: $anim-delay ease-out color;
+  transition: $anim-delay ease-out color;
+
+}
+
+a:hover, a:active {
+  color: #222;
+  -moz-transition: $anim-delay ease-out color;
+  -webkit-transition: $anim-delay ease-out color;
+  -ms-transition: $anim-delay ease-out color;
+  transition: $anim-delay ease-out color;
+}
+
+h1 {
+  @include font-customize(30px, 34px);
+  margin: 15px 0 15px 0;
+  word-spacing: 1px;
+}
+
+h2 {
+  @include font-customize(26px, 30px);
+  margin: 10px 0 10px 0;
+}
+
+h3 {
+  @include font-customize(22px, 26px);
+  margin: 5px 0 5px 0;
+}
+
+h4 {
+  @include font-customize(18px, 22px);
+  margin: 5px 0 5px 0;
+}
+
+p {
+  font: 14px/16px inherit;
+  margin-bottom: 15px;
+}
+
+/* Form Properties */
+input[type="text"], input[type="password"] {
+  background: #FDFDFD;
+  border: 1px solid #222;
+  border-radius: 7px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  opacity: 0.8;
+  padding: 5px;
+  width: 240px;
+  height: 15px;
+  @include font-normal;
+  transition: $anim-delay ease-out all;
+
+  &:focus {
+    -webkit-box-shadow: 0px 1px 5px $shadow-color, inset 0px 1px 5px $shadow-color;
+    -moz-box-shadow: 0px 1px 5px $shadow-color, inset 0px 1px 5px $shadow-color;
+    box-shadow: 0px 1px 5px $shadow-color, inset 0px 1px 5px $shadow-color;
+    opacity: 1;
+    transition: $anim-delay ease-out all;
+  }
+}
+
+label {
+  display: block;
+  padding: 5px;
+}
+
+.action-btn {
+  width: 110px;
+  height: 32px;
+  border: none;
+  border-radius: 7px;
+  margin: 10px 0 10px 0;
+  font-family: inherit;
+  line-height: 16px;
+  font-size: 16px;
+  @include general-shadow;
+
+  &.green {
+    // IE6-9
+    background: -webkit-linear-gradient(top, rgba(144, 200, 84, 0.65) 0%, rgba(144, 200, 84, 0.65) 21%, rgba(116, 172, 55, 0.65) 84%, rgba(116, 172, 55, 0.65) 100%);
+    background: -moz-linear-gradient(top, rgba(144, 200, 84, 0.65) 0%, rgba(144, 200, 84, 0.65) 21%, rgba(116, 172, 55, 0.65) 84%, rgba(116, 172, 55, 0.65) 100%);
+  }
+
+  &.red {
+    background: -webkit-linear-gradient(top, rgba(232, 186, 153, 0.65) 0%, rgba(232, 186, 153, 0.65) 21%, rgba(198, 107, 73, 0.65) 83%, rgba(198, 107, 73, 0.65) 100%);
+    background: -moz-linear-gradient(top, rgba(232, 186, 153, 0.65) 0%, rgba(232, 186, 153, 0.65) 21%, rgba(198, 107, 73, 0.65) 83%, rgba(198, 107, 73, 0.65) 100%);
+  }
+
+  &.yellow {
+
+  }
+
+  &.blue {
+
+  }
+}
+
+.container {
+  margin: 0 auto;
+  width: 920px;
+}
+
+#error-explanation, #notice {
+  list-style-type: none;
+  background: rgba(255, 201, 164, 0.6);
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px 15px;
+  color: #513322;
+  box-shadow: 0px 1px 7px rgba(246, 146, 72, 0.3);
+  @include font-customize(16px, 19px);
+  @include font-normal;
+
+  li {
+    margin-bottom: 5px;
+  }
+}
+
+
+
+/***** View Definitions *****/
+$anim-delay: 0.3s;
+$header-height: 40px;
+
+#header {
+  @include general-shadow;
+  @include clearfix;
+  background: -webkit-linear-gradient(top, rgba(222,243,202,0.65) 0%,rgba(222,243,202,0.65) 10%,rgba(185,223,163,0.65) 85%,rgba(185,223,163,0.65) 100%);
+  background: -moz-webkit-linear-gradient(top, rgba(222,243,202,0.65) 0%,rgba(222,243,202,0.65) 10%,rgba(185,223,163,0.65) 85%,rgba(185,223,163,0.65) 100%);
+  border-bottom: 1px solid #2A5D2D;
+  width: 100%;
+  min-width: 920px;
+  height: $header-height;
+
+  & a {
+    text-decoration: none;
+  }
+
+  #logo {
+    display: block;
+    float: left;
+    background: url(../images/OHIHALogo.png) center left no-repeat;
+    width: 246px;
+    height: 40px;
+    text-indent: -10000px;
+    opacity: 0.7;
+    transition: $anim-delay ease-in opacity;
+    -moz-transition: $anim-delay ease-in opacity;
+    -webkit-transition: $anim-delay ease-in opacity;
+
+    &:hover {
+      opacity: 1;
+      transition: $anim-delay ease-in opacity;
+      -moz-transition: $anim-delay ease-in opacity;
+      -webkit-transition: $anim-delay ease-in opacity;
+    }
+  }
+}
+
+#account_panel {
+  float: right;
+
+  & * {
+    line-height: $header-height;
+  }
+
+  nav {
+    display: inline-block;
+    padding: 0px;
+  }
+
+  li {
+    display: inline;
+    padding-left: 10px;
+    border-left-color: #222;
+  }
+}
+
+#gravatar {
+  width: 32px;
+  height: 32px;
+  margin: 0px 3px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px $shadow-color;
+  vertical-align: middle;
+}
+
+
+#main-menu ul {
+  $menu-width: 820px;
+
+  background: #eef6e5;
+  display: block;
+  width: $menu-width;
+  margin: 20px auto;
+  height: 40px;
+  box-shadow: 0px 1px 4px $shadow-color;
+  border-radius: 7px;
+  border: 1px solid #5e730e;
+  font: 18px/40px "Roboto Light";
+  list-style: none;
+
+  li {
+    float: left;
+  }
+
+  a {
+    width: $menu-width / 5;
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    -moz-transition: $anim-delay ease-out all;
+    -webkit-transition: $anim-delay ease-out all;
+    -ms-transition: $anim-delay ease-out all;
+    transition: $anim-delay ease-out all;
+
+    &:hover {
+      background: -moz-linear-gradient(top, rgba(222,243,202,0.65) 0%,rgba(222,243,202,0.65) 10%,rgba(185,223,163,0.65) 85%,rgba(185,223,163,0.65) 100%);
+      background: -webkit-linear-gradient(top, rgba(222,243,202,0.65) 0%,rgba(222,243,202,0.65) 10%,rgba(185,223,163,0.65) 85%,rgba(185,223,163,0.65) 100%);
+      -moz-transition: $anim-delay ease-out all;
+      -webkit-transition: $anim-delay ease-out all;
+      -ms-transition: $anim-delay ease-out all;
+      transition: $anim-delay ease-out all;
+    }
+  }
+}
+
+.left-corner {
+  border-radius: 7px 0px 0px 7px;
+}
+
+.right-corner {
+  border-radius: 0px 7px 7px 0px;
+}
+
+
+
+
+
+
+
+#footer {
+  @include clearfix;
+  margin-top: 20px;
+  font: 14px/18px "Roboto Light";
+}

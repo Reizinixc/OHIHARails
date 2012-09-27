@@ -1,54 +1,29 @@
-// Place all the styles related to the Courses controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "application.scss";
+
 #login-panel {
-  margin: 30px auto 0px auto;
-  width: 800px;
+  @include div-shadow(20px);
+  @include clearfix;
+  background: #fdfdfd;
+  width: 750px;
+  height: 400px;
+  margin: 40px auto;
+  padding-right: 15px;
+}
 
-  & h2.title {
-    font: 26px bold "Roboto";
-    margin: 50px 0px 15px 0px;
-  }
+#bg-left {
+  display: block;
+  float: left;
+  width: 375px;
+  height: 100%;
+}
 
-  & p {
-    font-size: 16px;
-    line-height: 1.1em;
-    margin-bottom: 15px;
-  }
+#bg-right {
+  float: right;
+  width: 350px;
+}
 
-  & .field {
-    margin-top: 10px;
-  }
-
-  & input[type=button], input[type=submit] {
-    border-radius: 7px;
-    border: none;
-    padding: 5px 10px 5px 10px;
-    background: #34a926;
-    color: white;
-    width: auto;
-    margin: 7px 70px;
-    box-shadow: 0px 0px 5px #CCC;
-  }
-
-  & #background {
-    float: left;
-    width: 360px;
-    height: 400px;
-    background-image: url("/images/background_login.png");
-    margin-right: 30px;
-  }
-
-  & #new_user_session {
-    float: right;
-    width: 410px;
-  }
-
-  & .error_explanation {
-    width: 100%;
-  }
-
-  & li {
-    list-style: none;
-  }
+.action-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

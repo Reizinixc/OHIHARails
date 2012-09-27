@@ -49,11 +49,11 @@ describe Section do
       @section.should be_valid
     end
 
-    #context "Course ID" do
-    #  @section.course_id = "01111111"
-    #  @section.should_not be_valid
-    #  @section.should have(1).error_on(:course_id)
-    #end
+    context "Course ID" do
+      @section.course_id = "01111111"
+      @section.should_not be_valid
+      @section.should have(1).error_on(:course_id)
+    end
 
   end
 end
