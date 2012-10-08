@@ -1,0 +1,12 @@
+<% form_for @homework do |f| %>
+  <%= render :partial => "shared/user_error", :locals => { :model_object => @homework } %>
+
+  <%= f.label :type %>
+  <%= f.radio_button :type, "SingleHomework" %>
+
+  <%= f.label :section_id %>
+  <% sections = [] %>
+  <%= @teaches.each do |t| %>
+    <%= sections << [t.section_id, t.course]  %>
+  <% end %>
+<% end %>

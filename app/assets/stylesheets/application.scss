@@ -58,6 +58,7 @@
 }
 
 @mixin clearfix {
+
   &:after {
     content: ".";
     clear: both;
@@ -198,6 +199,9 @@ label {
   line-height: 16px;
   font-size: 16px;
   @include general-shadow;
+  transition: $anim-delay ease-out opacity;
+  -webkit-transition: $anim-delay ease-out opacity;
+  -moz-transition: $anim-delay ease-out opacity;
 
   &.green {
     // IE6-9
@@ -216,6 +220,13 @@ label {
 
   &.blue {
 
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    transition: $anim-delay ease-out opacity;
+    -webkit-transition: $anim-delay ease-out opacity;
+    -moz-transition: $anim-delay ease-out opacity;
   }
 }
 
@@ -245,6 +256,10 @@ label {
 /***** View Definitions *****/
 $anim-delay: 0.3s;
 $header-height: 40px;
+
+#wrapper {
+  @include clearfix;
+}
 
 #header {
   @include general-shadow;

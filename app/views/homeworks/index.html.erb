@@ -1,6 +1,18 @@
-<div id="section-list">
+<div class="overflow-hidden">
 
-</div>
-<div id="homework-list">
+  <div id="section-list">
+    <h2><%= "#{teacher? ? "Teach" : "Tak"}" %>ing Course List</h2>
+    <ul>
+      <% @homeworks.each do |h| %>
+        <li>
+          <span class="section"><%= "#{h.section.course.course_code} sec #{h.section.section}" %></span>
+          <span class="course-name"><%= "#{h.section.course.english_course_name}" %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
+  <div id="homework-list">
+    <h2>Homework List</h2>
+  </div>
 </div>

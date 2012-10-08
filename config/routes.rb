@@ -25,9 +25,13 @@ OHIHARubymine::Application.routes.draw do
   end
 
   match '/homeworks' => 'homeworks#index'
-  match '/homework/new' => 'homeworks#new'
-  match '/homework/:id/edit' => 'homeworks#edit'
-  match '/homework/:id/handin' => 'homeworks#handin'
+
+  scope '/homework' do
+    match 'new', :to => 'homeworks#new'
+    match ':id/edit' => 'homeworks#edit'
+    match ':id/handin' => 'homeworks#handin'
+  end
+
   resource :homeworks
 
 

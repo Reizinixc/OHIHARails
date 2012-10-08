@@ -3,6 +3,7 @@ class HomeworksController < ApplicationController
   before_filter :require_teacher, :except => [:index, :handin]
 
   def index
+    @title   = "Homework List"
     sections = []
     if teacher? or admin?
       Teach.find_all_by_user_id(current_user).each do |r|
@@ -22,18 +23,32 @@ class HomeworksController < ApplicationController
   end
 
   def new
-    @homework
+    @homework = Homework.new
+    @teaches  = Teach.find_all_by_user_id current_user
   end
 
   def create
-    # Go to homepage create
+    type = @homework.type
+    if type == "SelfHomework"
+      @homework = SelfHomework.new(:params[:homework])
+      if @homework.save
+        flash[:notice] = "Successfully created Self Homework"
+        redirect_to homeworks_path
+      else
+        render :action => 'homeworks/create'
+      end
+
+    else
+      flash[:error] = "A Question Homework not been supported yet"
+      redirect_to homeworks_path
+    end
   end
 
 
   def handin
     @homework = Homework.find(params[:id])
-    if is_self_homework?
-      # Redirect to Single homework sending page
+    if is_self_homework? @homework
+      @self_homework = SelfHomework.new
     else
       # Redirect to Question homework page
     end

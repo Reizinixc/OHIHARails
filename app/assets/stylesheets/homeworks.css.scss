@@ -1,0 +1,41 @@
+@import "application.scss";
+
+@mixin content-pane-template {
+  @include content-pane;
+  min-height: 400px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+#section-list {
+  @include content-pane-template;
+  background: #f1f5fd;
+  width: 320px;
+  padding: 10px;
+  float: left;
+
+  ul {
+    list-style: none;
+    margin-bottom: 7px;
+  }
+
+  li {
+    width: 100%;
+
+    &.pending {
+      background: -webkit-linear-gradient(top, rgba(245,253,189,0.65) 0%,rgba(245,253,189,0.65) 29%,rgba(243,245,89,0.65) 100%);
+      background: -moz-linear-gradient(top, rgba(245,253,189,0.65) 0%,rgba(245,253,189,0.65) 29%,rgba(243,245,89,0.65) 100%);
+      background: linear-gradient(top, rgba(245,253,189,0.65) 0%,rgba(245,253,189,0.65) 29%,rgba(243,245,89,0.65) 100%);
+    }
+  }
+}
+
+#homework-list {
+  @include content-pane-template;
+  float: right;
+  background: #f7fdf7;
+  width: 510px;
+  padding: 15px;
+}
