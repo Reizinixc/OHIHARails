@@ -1,29 +1,33 @@
-<h1>Opening Course's List</h1>
+<h1>Teaching Section's List</h1>
+
+<div class="config">
+  <%= link_to 'New Section', new_section_path %>
+</div>
 
 <table id="table">
   <tr>
-    <th>Year</th>
-    <th>Semester</th>
+    <th>Activate?</th>
+    <th>Course Code</th>
+    <th>English Course Name</th>
     <th>Section</th>
-    <th>Is suspend</th>
+    <th>Semester</th>
+    <th>Year</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @sections.each do |section| %>
-  <tr>
-    <td><%= section.year %></td>
-    <td><%= section.semester %></td>
-    <td><%= section.section %></td>
-    <td><%= section.is_suspend %></td>
-    <td><%= link_to 'Show', section %></td>
-    <td><%= link_to 'Edit', edit_section_path(section) %></td>
-    <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @sections.each do |section| %>
+    <tr>
+      <% course = section.course %>
+      <td><%= section.is_suspend %></td>
+      <td><%= course.course_code %></td>
+      <td><%= course.english_course_name %></td>
+      <td class="text-center"><%= section.section %></td>
+      <td class="text-center"><%= get_abbr_semester_text section.semester %></td>
+      <td class="text-center"><%= section.year %></td>
+      <td><%= link_to 'Edit', edit_section_path(section) %></td>
+      <td class="text-center"><%= link_to "#{(section.is_suspend ? "Dea" : "A")}ctivated", "/section/toggle/#{section.id}" %></td>
+    </tr>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Section', new_section_path %>

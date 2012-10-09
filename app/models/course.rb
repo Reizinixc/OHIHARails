@@ -7,6 +7,6 @@ class Course < ActiveRecord::Base
                   :english_course_name,
                   :updated_by
 
-  validates :course_code, :presence => true
+  validates :course_code, :presence => true, :uniqueness => true
   validates :updated_by, :presence => true
 end

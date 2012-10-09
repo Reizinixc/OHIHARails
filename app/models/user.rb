@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
     c.login_field = :username
   end
 
-  has_many :takeses, :dependent => :destroy
-  has_many :sections, :through => :takeses
+  has_many :takes, :dependent => :destroy
+  has_many :sections, :through => :takes
 
   has_many :teaches, :dependent => :destroy
   has_many :sections, :through => :teaches

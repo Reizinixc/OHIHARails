@@ -6,7 +6,7 @@
     <li>Name: <%= @user.name %></li>
     <li>Lastname: <%= @user.lastname %></li>
     <li>Position: <%= @user.position == 't' ? t('teacher') : t('student') %></li>
-    <li>Email: <%= @user.email %></li>
+    <li>Email: <%= @user.email.gsub("@", " [at] ") %></li>
     <li>Alternate Email : <%= @user.alt_email %></li>
   </ul>
 </section>

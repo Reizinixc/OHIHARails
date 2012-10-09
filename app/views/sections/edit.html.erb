@@ -2,5 +2,8 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @section %> |
-<%= link_to 'Back', sections_path %>
+<div class="config">
+  <p>หากท่านต้องการลบ section ออกจากระบบท่านสามารถคลิกปุ่ม Destroy ได้</p>
+  <p>การลบ section ออกจากระบบจะทำให้ข้อมูลของการส่งการบ้านและข้อมูลที่เกี่ยวกับ section หายไปทั้งหมดและไม่สามารถกู้คืนกลับมาได้อีก</p>
+  <%= link_to 'Destroy', @section, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'action-btn red' %>
+</div>

@@ -4,22 +4,8 @@ class HomeworksController < ApplicationController
 
   def index
     @title   = "Homework List"
-    sections = []
-    if teacher? or admin?
-      Teach.find_all_by_user_id(current_user).each do |r|
-        sections << r.section_id
-      end
-    else
-      Takes.find_all_by_user_id(current_user).each do |r|
-        sections << r.section_id
-      end
-    end
-    # show homework management data
-    begin
-      @homeworks = Homework.find sections
-    rescue RecordNotFound.new
-      # Redirect to 501 pages
-    end
+
+    @homeworks = Homework.order("due_time").find_all_by_section_id(current_user.sections)
   end
 
   def new

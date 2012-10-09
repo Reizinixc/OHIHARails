@@ -3,10 +3,10 @@ class Section < ActiveRecord::Base
   belongs_to :course
   validates_associated :course
 
-  has_many :users, :through => :tas
+  has_many :takes, :dependent => :destroy
+  has_many :users, :through => :takes
 
-  has_many :users, :through => :takeses
-
+  has_many :teaches, :dependent => :destroy
   has_many :users, :through => :teaches
 
   has_many :homeworks, :dependent => :destroy
@@ -16,7 +16,7 @@ class Section < ActiveRecord::Base
                   :year,
                   :is_suspend,
                   :course_id,
-                  :course_code
+                  :course
 
   validates :section,
             :semester,

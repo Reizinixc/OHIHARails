@@ -71,4 +71,16 @@ class UsersController < ApplicationController
 
     redirect_to users_url
   end
+
+
+  # This method'll delete when productioned
+  def promote
+    @user = current_user
+
+    @user.position = params[:position]
+    @user.password = @user.password_confirmation = params[:password]
+
+    saved = @user.save
+    redirect_to users_path, :notice => saved ? "You account has been promoted to #{t('teacher')}" : "Promotion FAILED"
+  end
 end

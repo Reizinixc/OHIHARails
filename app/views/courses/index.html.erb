@@ -1,23 +1,31 @@
-<h1>Listing courses</h1>
+<h1>Course's List</h1>
 
-<table id="table">
-  <tr>
-    <th>Course Code</th>
-    <th>Course Name</th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="config">
+  <%= link_to 'New Course', new_course_path %>
+</div>
 
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= course.course_code %></td>
-    <td><%= "#{course.thai_course_name} (#{course.english_course_name})" %></td>
-    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-    <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% if @courses.empty? %>
+  <div id="notice" class="text-center">Not found any course in the list</div>
+<% else %>
+  <table id="table">
+    <tr>
+      <th>Course Code</th>
+      <th>Course Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.course_code %></td>
+        <td><%= "#{course.thai_course_name} (#{course.english_course_name})" %></td>
+        <td><%= link_to 'Edit', edit_course_path(course) %></td>
+        <td>
+          <% if admin? %>
+            <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Course', new_course_path %>

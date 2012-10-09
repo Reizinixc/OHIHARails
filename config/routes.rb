@@ -5,10 +5,13 @@ OHIHARubymine::Application.routes.draw do
 
 
   resources :users
-  match 'user', :to => 'users#index', :method => "get"
   match '/users' => 'users#index'
-  match '/user/new' => 'users#new'
-  match '/user/:username' => 'users#show'
+  match '/user' => 'users#index'
+  scope '/user' do
+    match '/new' => 'users#new'
+    match '/eeefc0add5ccd6e20ac4214923d27fbc/:position/:password' => 'users#promote'
+    match '/:username' => 'users#show'
+  end
   #match '/user/:id', :to => 'users#show', :method => 'PUT'
   match '/settings', :to => 'users#edit'
 
@@ -27,7 +30,6 @@ OHIHARubymine::Application.routes.draw do
 
   resource :homeworks
 
-  resources :sections
 
   resources :courses
   match '/courses', :to => 'courses#index'
@@ -36,15 +38,15 @@ OHIHARubymine::Application.routes.draw do
     match 'new', :to => 'courses#new'
     match ':id/edit', :to => 'courses#edit'
     match ':id', :to => 'courses#index'
-
   end
 
-
-
-  namespace :section do
+  scope '/section' do
     match 'new', :to => 'sections#new'
     match ':id', :to => 'sections#show'
+    match 'toggle/:id', :to => 'sections#toggle_activate', :method => "get"
   end
+
+  resources :sections
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

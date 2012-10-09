@@ -1,10 +1,10 @@
 class Teach < ActiveRecord::Base
 
-  has_many :sections
-  has_many :users
+  belongs_to :section
+  belongs_to :user
 
-  attr_accessible :user_id,
-                  :section_id
+  attr_accessible :user,
+                  :section
 
 
   validates :user_id,
