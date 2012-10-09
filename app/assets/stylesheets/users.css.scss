@@ -1,3 +1,5 @@
+@import "application.scss";
+
 #field {
   background: #EEE;
   width: 260px;
@@ -8,4 +10,34 @@
 
 #field * {
   max-height: 240px;
+}
+
+#profile {
+  @include content-pane;
+  @include div-center;
+  background: #E2F4CD;
+  padding: 20px;
+  width: 80%;
+  overflow: hidden;
+
+  & h2 {
+    width: 400px;
+    display: inline-block;
+  }
+
+  & img {
+    @include general-shadow;
+    width: 150px;
+    height: 150px;
+    border-radius: 7px;
+    float: right;
+  }
+
+  & ul {
+    list-style: none inside;
+  }
+
+  & li {
+    margin-bottom: 10px;
+  }
 }

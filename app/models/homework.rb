@@ -3,15 +3,16 @@ class Homework < ActiveRecord::Base
   belongs_to :section
   validates_associated :section
 
+  has_many :homeworks, :dependent => :destroy
+
   attr_accessible :section_id,
                   :description,
                   :due_time,
                   :start_time,
-                  :title,
-                  :type
+                  :title
 
   validates :due_time,
             :start_time,
             :title,
-            :type, :presence => true
+            :section_id, :presence => true
 end

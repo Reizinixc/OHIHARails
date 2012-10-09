@@ -14,7 +14,7 @@
 
     <div id="account_panel">
       <% if current_user %>
-        <%= gravatar_for current_user %>
+        <%= image_tag gravatar_for(current_user), :alt => "#{current_user.name} #{current_user.lastname}'s photo", :title => "#{current_user.name} #{current_user.lastname}'s photo", :id => "gravatar" %>
         <%= link_to header_name, "/user/#{current_user.username}", :class => "username" %>
         <nav>
           <ul>
@@ -47,9 +47,9 @@
       <ul>
         <li><%= link_to "Dashboard", users_path, :class => "left-corner" %></li>
         <li><%= link_to "Homework", '/homeworks' %></li>
-        <li><%= link_to "Section", sections_path %></li>
-        <li><%= link_to "Course", courses_path %></li>
-        <li><%= link_to "Help", users_path, :notice => "Coming Soon!", :class => "right-corner" %></li>
+        <li><%= link_to "Section", '/sections' %></li>
+        <li><%= link_to "Course", '/courses' %></li>
+        <li><%= link_to "Help", '/help', :notice => "Coming Soon!", :class => "right-corner" %></li>
       </ul>
     </nav>
   <% end %>

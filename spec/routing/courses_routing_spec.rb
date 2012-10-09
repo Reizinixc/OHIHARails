@@ -24,11 +24,11 @@ describe CoursesController do
     end
 
     it "routes to #update" do
-      put("/courses/01015101").should route_to("courses#update", :id => "01015101")
+      put("/courses/1").should route_to("courses#update", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/courses/01015101").should route_to("courses#destroy", :id => "01015101")
+      delete("/courses/1").should route_to("courses#destroy", :id => "1")
     end
 
   end

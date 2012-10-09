@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   # GET /users/:username
   def show
     begin
-      @user = User.find_by_username(params[:username])
+      @user  = User.find_by_username(params[:username])
       @title = "#{@user.name} #{@user.lastname}"
     rescue NoMethodError
       redirect_to "/user/#{params[:id]}"
@@ -26,8 +26,11 @@ class UsersController < ApplicationController
 
 # GET /users/settings
   def edit
-    #@user = User.find(params[:username])
-    @user = current_user
+    if admin?
+      @user = User.find(params[:username])
+    else
+      @user = current_user
+    end
   end
 
 # POST /users

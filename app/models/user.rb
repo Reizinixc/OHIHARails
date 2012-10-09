@@ -3,17 +3,14 @@ class User < ActiveRecord::Base
     c.login_field = :username
   end
 
-  has_many :tas, :dependent => :destroy
-  has_many :sections, :through => :tas
-
   has_many :takeses, :dependent => :destroy
   has_many :sections, :through => :takeses
 
   has_many :teaches, :dependent => :destroy
   has_many :sections, :through => :teaches
 
-  has_many :self_homework_answer_files, :dependent => :destroy
-  has_many :question_answers, :dependent => :destroy
+  has_many :homeworks, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
 
   def to_param
     username
@@ -42,8 +39,8 @@ class User < ActiveRecord::Base
             :password, :presence => true
             #:type, :presence => true
 
-  validates :username, :format => { :with => /((b\w+)|(g\w+)|(f\w+)){1,11}/ }
+  validates :username, :format => { :with => /((b\w+)|(g\w+)|(f\w+)){1,11}/ }, :uniqueness => true
   validates :password, :confirmation => true
   validates :email, :uniqueness => true
-  #validates :type, :inclusion => { :in => %w[s t], :message => "User's type should be valid" }
+  #validates :position, :inclusion => { :in => %w[s t], :message => "User's type should be valid" }
 end

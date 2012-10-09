@@ -9,4 +9,5 @@
   <%= @teaches.each do |t| %>
     <%= sections << [t.section_id, t.course]  %>
   <% end %>
+  <%= sections.to_s %>
 <% end %>

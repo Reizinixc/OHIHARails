@@ -1,20 +1,17 @@
 <%= form_for(@course) do |f| %>
-  <%= render :partial => "shared/user_error", :locals => {:model_object => @course} %>
+  <%= render :partial => "shared/user_error", :locals => { :model_object => @course } %>
 
-  <div class="field">
-    <%= f.label :course_code %><br />
+  <div id="field">
+    <%= f.label :course_code %>
     <%= f.text_field :course_code %>
-  </div>
-  <div class="field">
-    <%= f.label :thai_course_name %><br />
+
+    <%= f.label :thai_course_name %>
     <%= f.text_field :thai_course_name %>
-  </div>
-  <div class="field">
-    <%= f.label :english_course_name %><br />
+
+    <%= f.label :english_course_name %>
     <%= f.text_field :english_course_name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+    <%= f.submit "Submit", :disable_with => "Submitting...", :class => "action-btn green" %>
   </div>
 
 <% end %>

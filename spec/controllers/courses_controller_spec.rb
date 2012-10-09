@@ -24,21 +24,14 @@ describe CoursesController do
   # Course. As you add validations to Course, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:course_code => "01015114",
-     :thai_course_name => "123",
-     :english_course_name => "Insei study IV"}
+    {}
   end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # CoursesController. Be sure to keep this updated too.
   def valid_session
-    {:username => "fkzkwt", :password => "1234"}
-  end
-
-  before(:each) do
-    @user_session = UserSession.new(:username => "fkzkwt", :password => "1234")
-    @user_session.save
+    {}
   end
 
   describe "GET index" do

@@ -1,31 +1,14 @@
-<div style="background-image: url(/images/nu_nen.png); float: right;
-        width:206px; height:369px; background-repeat: no-repeat; margin-right: 100px;"></div> </br></br>
-<div style="font: 20px bold; font-family: roboto; color: #666666; margin-left: 100px; margin-right: 100px;
-        margin-top: 50;background-color: #f0f8ff;">
-<p>
-  <b>Login:</b>
-  <%= @user.username %>
-</p>
+<section id="profile">
+  <h2><%= "#{@user.name} #{@user.lastname} (#{@user.username})" %></h2>
+  <%= image_tag "#{gravatar_for(@user)}?s=150&r=r", :alt => "#{@user.name} #{@user.lastname}'s photo", :title => "#{@user.name} #{@user.lastname}'s photo", :width => 150, :height => 150 %>
+  <ul>
+    <li>Username: <%= @user.username %></li>
+    <li>Name: <%= @user.name %></li>
+    <li>Lastname: <%= @user.lastname %></li>
+    <li>Position: <%= @user.position == 't' ? t('teacher') : t('student') %></li>
+    <li>Email: <%= @user.email %></li>
+    <li>Alternate Email : <%= @user.alt_email %></li>
+  </ul>
+</section>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
-
-<p>
-  <b>Lastname:</b>
-  <%= @user.lastname %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Alt email:</b>
-  <%= @user.alt_email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_path(@user), :class => "action-btn yellow" %>

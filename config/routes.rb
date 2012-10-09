@@ -1,7 +1,7 @@
 OHIHARubymine::Application.routes.draw do
 
-  root :to => 'user_sessions#new'
 
+  root :to => 'user_sessions#new'
 
 
   resources :users
@@ -17,13 +17,6 @@ OHIHARubymine::Application.routes.draw do
   resources :user_sessions
 
 
-  namespace :QuestionAnswer do
-    match 'new' => "question_answer#new"
-    match ':id' => "user_sessions#new"
-    match 'edit/:id' => "question_answer#edit"
-    match 'destroy/:id' => "question_answer#destroy"
-  end
-
   match '/homeworks' => 'homeworks#index'
 
   scope '/homework' do
@@ -34,80 +27,18 @@ OHIHARubymine::Application.routes.draw do
 
   resource :homeworks
 
-
-  namespace :SelfHomework do
-    match '' => "self_homework#index"
-    match 'new' => "self_homework#new"
-    match ':id' => "self_homework#show"
-    match 'edit/:id' => "self_homework#edit"
-    match 'destroy/:id' => "self_homework#destroy"
-  end
-
-  namespace :QuestionHomework do
-
-  end
-
-  get "item/new"
-
-  get "item/create"
-
-  get "item/edit"
-
-  get "item/update"
-
-  get "item/destroy"
-
-  get "question_homework/new"
-
-  get "question_homework/create"
-
-  get "question_homework/edit"
-
-  get "question_homework/update"
-
-  get "question_homework/destroy"
-
-  get "self_homework/new"
-
-  get "self_homework/create"
-
-  get "self_homework/edit"
-
-  get "self_homework/update"
-
-  get "self_homework/destroy"
-
-  get "teach/new"
-
-  get "teach/create"
-
-  get "teach/destroy"
-
-  get "takes/new"
-
-  get "takes/create"
-
-  get "takes/destroy"
-
-  get "ta/new"
-
-  get "ta/create"
-
-  get "ta/destroy"
-
-  resources :self_homework_answer_files
-
-  match '/homework/file/new', :to => "self_homework_answer_files#new"
-
   resources :sections
 
-  resources :courses, :only => [:index]
+  resources :courses
+  match '/courses', :to => 'courses#index'
 
-  namespace :course do
-    post '', :to => 'courses#create'
+  scope '/course' do
     match 'new', :to => 'courses#new'
-    match ':id', :to => 'courses#show'
+    match ':id/edit', :to => 'courses#edit'
+    match ':id', :to => 'courses#index'
+
   end
+
 
 
   namespace :section do

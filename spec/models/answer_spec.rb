@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe "ta/new.html.erb" do
+describe Answer do
   pending "add some examples to (or delete) #{__FILE__}"
 end
