@@ -9,7 +9,7 @@
     <%= f.text_field :year %>
 
     <%= f.label :semester %>
-    <%= f.select :semester, options_for_select([["Summer", 0], ["Semester I", 1], ["Semester II", 2], ["Semester III", 3]]) %>
+    <%= f.select :semester, options_for_select([["Summer", 0], ["Semester I", 1], ["Semester II", 2], ["Semester III", 3]], :selected => params[:semester]) %>
 
     <%= f.label :section %>
     <%= f.number_field :section, :min => 0 %>

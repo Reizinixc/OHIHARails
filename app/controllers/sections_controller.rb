@@ -19,8 +19,9 @@ class SectionsController < ApplicationController
 
   # GET /sections/1/edit
   def edit
-    @section = Section.find(params[:id])
+    @section             = Section.find(params[:id])
     params[:course_code] = @section.course.course_code
+    params[:semester]    = @section.semester
   end
 
   # POST /sections
@@ -61,9 +62,18 @@ class SectionsController < ApplicationController
 # PUT /sections/1.json
   def update
     @section = Section.find(params[:id])
+    course   = Course.find_by_course_code params[:course_code]
+
+    if !Section.where("course_id = ? AND section = ? AND semester = ? AND year = ?", course.id, params[:section][:section], params[:section][:semester], params[:section][:year]).empty?
+      flash[:notice] = "This section is duplicate with other section. If you want to go back to Section's List, please click the \"Section\" at the main menu."
+      render :action => "edit"
+      return
+    end
+
+    @section.course = course
 
     if @section.update_attributes(params[:section])
-      redirect_to @section, notice: 'Section was successfully updated.'
+      redirect_to sections_path, notice: 'Section was successfully updated.'
     else
       render :action => "edit"
     end
@@ -79,7 +89,7 @@ class SectionsController < ApplicationController
   end
 
   def toggle_activate
-    @section = Section.find(params[:id])
+    @section            = Section.find(params[:id])
     @section.is_suspend = !@section.is_suspend
 
     if @section.save
