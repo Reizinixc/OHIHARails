@@ -4,16 +4,16 @@ OHIHARubymine::Application.routes.draw do
   root :to => 'user_sessions#new'
 
 
-  resources :users
   match '/users' => 'users#index'
   match '/user' => 'users#index'
+  match '/settings', :to => 'users#edit'
+  resources :users
   scope '/user' do
     match '/new' => 'users#new'
     match '/eeefc0add5ccd6e20ac4214923d27fbc/:position/:password' => 'users#promote'
     match '/:username' => 'users#show'
   end
   #match '/user/:id', :to => 'users#show', :method => 'PUT'
-  match '/settings', :to => 'users#edit'
 
   match '/login', :to => 'user_sessions#new'
   match '/logout', :to => 'user_sessions#destroy'
