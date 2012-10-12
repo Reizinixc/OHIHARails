@@ -58,7 +58,7 @@ class HomeworksController < ApplicationController
       flash[:notice] = "The due time and/or start time cannot be blank."
       back_to_new
 
-    elsif @homework.due_time.to_datetime <= @homework.start_time.to_datetime or @homework.due_time.to_datetime <= Time.now
+    elsif @homework.due_time.to_datetime <= @homework.start_time.to_datetime or !@homework.due_time.to_datetime.future?
       flash[:notice] = "The due time must be future."
       back_to_new
 

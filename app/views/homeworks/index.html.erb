@@ -30,7 +30,7 @@
       <% @homeworks.each do |h| %>
         <%  %>
         <li>
-          <a href="<%= "/answer/new/#{h.id}" %>">
+          <a href="<%= "/answers/new/#{h.id}" %>">
             <span class="section"><%= "#{h.section.course.course_code} sec #{h.section.section}" %></span>
             <span class="homework-title"><%= "#{h.title}" %></span>
             <% if teacher? %>

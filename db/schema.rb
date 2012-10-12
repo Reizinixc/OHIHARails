@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(:version => 20121009081819) do
 
   create_table "answers", :force => true do |t|
-    t.integer  "student_id",                  :null => false
-    t.integer  "homework_id",                 :null => false
+    t.integer  "student_id",        :null => false
+    t.integer  "homework_id",       :null => false
     t.text     "description"
     t.datetime "sent_time"
     t.string   "ip"
@@ -23,12 +23,8 @@ ActiveRecord::Schema.define(:version => 20121009081819) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "courses", :force => true do |t|

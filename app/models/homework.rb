@@ -3,7 +3,7 @@ class Homework < ActiveRecord::Base
   belongs_to :section
   validates_associated :section
 
-  has_many :homeworks, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
 
   attr_accessible :section_id,
                   :description,

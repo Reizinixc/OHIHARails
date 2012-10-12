@@ -1,3 +1,22 @@
 // Place all the styles related to the Answer controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "application.css.scss";
+
+#handin-field {
+  @include div-center;
+  @include clearfix;
+  width: 500px;
+  background: #EEE;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.red {
+  color: #8b0000;
+}
+
+.passage {
+  @include passage;
+}

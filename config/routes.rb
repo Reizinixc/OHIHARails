@@ -57,17 +57,18 @@ OHIHARubymine::Application.routes.draw do
 
   resources :takes
 
-  match "/answers" => 'homeworks#index'
 
-  scope '/answer' do
-    match '/new/:homework_id' => 'answers#new'
+  scope '/answers' do
+    match '/', :to => 'homeworks#index', :via => :get
+    match '/' => 'answers#create', :via => :post
+    match '/new/:homework_id' => 'answers#new', :via => :get
   end
 
+  resources :answers, :except => [:index]
 
-  get "answer/create"
-  get "answer/edit"
-  get "answer/download"
-  resources :answers
+  #get "answer/create"
+  #get "answer/edit"
+  #get "answer/download"
 
 
   # The priority is based upon order of creation:
