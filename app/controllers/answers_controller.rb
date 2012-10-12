@@ -4,6 +4,8 @@ class AnswersController < ApplicationController
   before_filter :require_teacher, :only => [:download, :grade, :grade_update]
 
   def new
+    @title = "Homework Creating"
+
     # Find a homework ID
     @homework = nil
     begin
@@ -49,6 +51,8 @@ class AnswersController < ApplicationController
   end
 
   def edit
+    @title = "Editing Homework"
+
     @answer   = Answer.find(params[:id])
     @homework = @answer.homework
   end
@@ -80,6 +84,8 @@ class AnswersController < ApplicationController
   end
 
   def grade
+    @title = "Homework Grading"
+
     begin
       @answer = Answer.find(params[:answer_id])
     rescue

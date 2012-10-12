@@ -5,16 +5,22 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
+    @title = "Course List"
+
     @courses = Course.all
   end
 
   # GET /courses/new
   def new
+    @title = "Course Creating"
+
     @course = Course.new
   end
 
   # GET /courses/1/edit
   def edit
+    @title = "Course Editing"
+
     @course = Course.find(params[:id])
   end
 

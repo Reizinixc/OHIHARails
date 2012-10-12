@@ -24,6 +24,7 @@ class HomeworksController < ApplicationController
     @homework = Homework.find(params[:id])
     @answers = @homework.answers
 
+    @title = @homework.title
   end
 
   def new

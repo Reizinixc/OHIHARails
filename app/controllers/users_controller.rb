@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
 # GET /users/settings
   def edit
+    @title = "Edit a Profile"
     if admin?
       @user = params[:username].nil? ? current_user : User.find(params[:username])
     else

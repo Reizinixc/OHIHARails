@@ -4,6 +4,8 @@ class TakesController < ApplicationController
   before_filter :require_teacher, :except => []
 
   def new
+    @title = "Add a student"
+
     sections = current_user.sections
 
     if sections.empty?

@@ -2,11 +2,11 @@
   <%= render :partial => "shared/user_error", :locals => { :model_object => @answer } %>
   <div id="handin-field">
     <section id="homework-desc">
+      <h3><%= @homework.title %></h3>
       <% course = @homework.section.course %>
 
       <p>Subject: <%= course.english_course_name %> (<%= course.course_code %>)</p>
       <p><span <%= DateTime.tomorrow > @homework.due_time.to_datetime ? raw('class="red"') : "" %>>Due Time: <%= @homework.due_time.to_datetime.strftime("%A %d %B %Y %H:%M:%S") %></span></p>
-      <p><%= @homework.title %></p>
       <p class="passage"><%= @homework.description %></p>
     </section>
 

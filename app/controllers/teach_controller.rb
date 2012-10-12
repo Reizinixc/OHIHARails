@@ -13,8 +13,7 @@ class TeachController < ApplicationController
       render :action => "new"
     else
       if @teach.save
-        flash[:notice] = "Successfully assign teach information"
-        render :action => "new"
+        redirect_to sections_path, :notice => "Successfully assign teach information"
       else
         flash[:notice] = "Cannot save data to the database"
         render :action => "new" # Some path

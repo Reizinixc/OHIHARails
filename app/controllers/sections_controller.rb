@@ -4,6 +4,8 @@ class SectionsController < ApplicationController
 
   # GET /sections
   def index
+    @title = "Section List"
+
     @sections = current_user.sections.order("year DESC").order("semester DESC").order("section").order("is_suspend DESC")
 
     if teacher?
@@ -18,10 +20,14 @@ class SectionsController < ApplicationController
   # GET /sections/1
   def show
     @section = Section.find(params[:id])
+
+    @title = "Sec #{@section.section} of #{@section.course.course_name}"
   end
 
   # GET /sections/new
   def new
+    @title = "Create a Course"
+
     # Check course
     if Course.all.empty?
       redirect_to courses_path, :notice => "Please create course first."
@@ -33,6 +39,7 @@ class SectionsController < ApplicationController
 
   # GET /sections/1/edit
   def edit
+    @title = "Edit a Course"
     @section             = Section.find(params[:id])
     params[:course_code] = @section.course.course_code
     params[:semester]    = @section.semester
