@@ -50,8 +50,9 @@ class SectionsController < ApplicationController
     if course.nil?
       # If not found we'll back user to input form again and display the error via flash[:notice]
 
-      flash[:notice] = "Cannot find the course with course code #{params[:course_code]}"
+      flash[:notice] = "Cannot find the course with course code '#{params[:course_code]}'"
       render :action => "new"
+      return
     else
       # If found we gonna to assign it in to section object for reference (section belongs_to course)
       @section.course = course

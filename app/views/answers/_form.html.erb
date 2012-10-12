@@ -1,0 +1,7 @@
+<%= form_for @answer, :html => { :multipart => true }, :url => '/answer/new' do |f| %>
+  <%= render :partial => "shared/user_error", :locals => { :model_object => @answer } %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,2 +1,23 @@
-<h1>Takes#new</h1>
-<p>Find me in app/views/takes/new.html.erb</p>
+<h1>Student adding wizard</h1>
+<div id="student-upload" class="right">
+  <h2>Adding with File</h2>
+
+  <p>ท่านสามารถเพิ่มผู้เรียนเข้าสู่ section ของตนเองได้โดยการ upload file ผ่านเข้าทางระบบ
+    จากนั้นระบบจะทำการค้นหารายชื่อนิสิตและดำเนินการเพิ่มผู้เรียนเข้าสู่ระบบต่อไป</p>
+
+  <%= form_for @take, :html => { :multipart => true, :method => "post" } do |f| %>
+    <div id="field">
+      <%= f.label :section_id %>
+      <%= f.select :section_id, options_for_select(@options) %>
+
+      <%= label_tag "Student list File" %>
+      <%= file_field_tag :student_list_file %>
+
+      <%= label_tag "Text list File" %>
+      <%= text_area_tag :student_list_text %>
+
+      <%= f.submit "Submit", :disable_with => "Submitting...", :class => "action-btn green" %>
+    </div>
+  <% end %>
+
+</div>

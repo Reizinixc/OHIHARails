@@ -1,8 +1,6 @@
 OHIHARubymine::Application.routes.draw do
 
-
   root :to => 'user_sessions#new'
-
 
   resources :users
   match '/users' => 'users#index'
@@ -21,7 +19,6 @@ OHIHARubymine::Application.routes.draw do
   resources :user_sessions
 
 
-
   scope '/homework' do
     match 'new', :to => 'homeworks#new'
     match ':id/edit' => 'homeworks#edit'
@@ -29,7 +26,6 @@ OHIHARubymine::Application.routes.draw do
     match '/section/:section_id' => 'homeworks#index'
   end
   resources :homeworks
-
 
 
   resources :courses
@@ -47,7 +43,22 @@ OHIHARubymine::Application.routes.draw do
     match 'toggle/:id', :to => 'sections#toggle_activate', :method => "get"
   end
 
+
+  match '/takes', :to => 'takes#index', :via => :get
+  match '/takes', :to => 'takes#create', :via => :post
   resources :sections
+
+  scope '/take' do
+    match 'new', :to => 'takes#new'
+    match 'new' => 'takes#create', :via => :post
+  end
+
+  resources :takes
+
+  scope '/answer' do
+    match '/new/:homework_id' => 'answers#new'
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
