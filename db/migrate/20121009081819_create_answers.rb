@@ -4,9 +4,10 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :student_id, :null => false
       t.integer :homework_id, :null => false
       t.text :description
-      t.datetime :sent_time, :null => false
+      #t.datetime :sent_time, :null => false
+      t.datetime :sent_time
       t.string :ip
-      t.attachment :file, :null => false
+      t.attachment :file
 
       t.timestamps
     end

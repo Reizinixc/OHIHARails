@@ -1,15 +1,23 @@
 class TakesController < ApplicationController
 
-  before_filter :require_teacher
+  before_filter :require_login
+  before_filter :require_teacher, :except => []
 
   def new
-    @take = Take.new
+    sections = current_user.sections
+
+    if sections.empty?
+      redirect_to sections_path, :notice => "Please create section first."
+      return
+    end
 
     @options = []
-    current_user.sections.each do |section|
+    sections.each do |section|
       course = section.course
       @options << ["#{course.english_course_name} #{get_abbr_semester_text section.semester} #{section.year}", section.id]
     end
+
+    @take = Take.new
   end
 
   def create

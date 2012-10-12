@@ -22,7 +22,13 @@ class SectionsController < ApplicationController
 
   # GET /sections/new
   def new
-    @section = Section.new((params[:course_code] unless params[:course_code].nil?))
+    # Check course
+    if Course.all.empty?
+      redirect_to courses_path, :notice => "Please create course first."
+      return
+    else
+      @section = Section.new((params[:course_code] unless params[:course_code].nil?))
+    end
   end
 
   # GET /sections/1/edit

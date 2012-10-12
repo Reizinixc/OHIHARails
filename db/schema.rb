@@ -11,22 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009120144) do
+ActiveRecord::Schema.define(:version => 20121009081819) do
 
   create_table "answers", :force => true do |t|
     t.integer  "student_id",                  :null => false
     t.integer  "homework_id",                 :null => false
     t.text     "description"
-    t.datetime "sent_time",                   :null => false
+    t.datetime "sent_time"
     t.string   "ip"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
-    t.string   "{:null=>false}_file_name"
-    t.string   "{:null=>false}_content_type"
-    t.integer  "{:null=>false}_file_size"
-    t.datetime "{:null=>false}_updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end

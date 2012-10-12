@@ -96,5 +96,4 @@ class ApplicationController < ActionController::Base
       Course.find course_id_list
     end
   end
-
 end

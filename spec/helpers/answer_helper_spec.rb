@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 # Specs in this file have access to a helper object that includes
-# the AnswersHelper. For example:
+# the AnswerHelper. For example:
 #
-# describe AnswersHelper do
+# describe AnswerHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       helper.concat_strings("this","that").should == "this that"

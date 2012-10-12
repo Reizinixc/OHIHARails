@@ -1,6 +1,7 @@
 class HomeworksController < ApplicationController
 
-  before_filter :require_teacher, :except => [:index, :create, :edit, :destroy]
+  before_filter :require_login
+  before_filter :require_teacher, :except => [:index]
 
   def index
     @title = "Homework List"
@@ -23,7 +24,14 @@ class HomeworksController < ApplicationController
     @title = "Create a Homework"
 
     @options = []
-    current_user.sections.each do |section|
+    sections = current_user.sections
+
+    if sections.empty?
+      redirect_to sections_path, :notice => "Please create section first."
+      return
+    end
+
+    sections.each do |section|
       course = section.course
       @options << ["#{course.english_course_name} #{get_abbr_semester_text section.semester} #{section.year}", section.id]
     end
@@ -32,12 +40,33 @@ class HomeworksController < ApplicationController
   end
 
   def create
+    def back_to_new
+      @options = []
+      sections = current_user.sections
+
+      sections.each do |section|
+        course = section.course
+        @options << ["#{course.english_course_name} #{get_abbr_semester_text section.semester} #{section.year}", section.id]
+      end
+
+      render :new
+    end
+
     @homework = Homework.new(params[:homework])
 
-    if @homework.save
+    if @homework.start_time.nil? or @homework.due_time.nil?
+      flash[:notice] = "The due time and/or start time cannot be blank."
+      back_to_new
+
+    elsif @homework.due_time.to_datetime <= @homework.start_time.to_datetime or @homework.due_time.to_datetime <= Time.now
+      flash[:notice] = "The due time must be future."
+      back_to_new
+
+    elsif @homework.save
       redirect_to homeworks_path, :notice => "Homework was successfully created."
+
     else
-      render :action => 'new'
+      back_to_new
     end
   end
 

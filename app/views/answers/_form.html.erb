@@ -1,7 +1,11 @@
-<%= form_for @answer, :html => { :multipart => true }, :url => '/answer/new' do |f| %>
+<%= form_for @answer, :html => { :multipart => true } do |f| %>
   <%= render :partial => "shared/user_error", :locals => { :model_object => @answer } %>
+  <div id="field">
+    <%= label_tag "Homework: " %>
 
-  <div class="actions">
-    <%= f.submit %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+
+    <%= f.submit "Submit", :disable_with => "Submitting...", :class => "action-btn green" %>
   </div>
 <% end %>
