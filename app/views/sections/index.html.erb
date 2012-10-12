@@ -1,33 +1,52 @@
 <h1>Teaching Section's List</h1>
 
-<div class="config">
-  <%= link_to 'New Section', new_section_path %>
+<div class="overflow-hidden">
+  <div class="config">
+    <%= link_to 'New Section', new_section_path %>
+  </div>
+
+  <table id="table">
+    <tr>
+      <th>Activate?</th>
+      <th>Course Code</th>
+      <th>English Course Name</th>
+      <th>Section</th>
+      <th>Semester</th>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @sections.each do |section| %>
+      <tr>
+        <% course = section.course %>
+        <td><%= section.is_suspend %></td>
+        <td><%= course.course_code %></td>
+        <td><%= course.english_course_name %></td>
+        <td class="text-center"><%= section.section %></td>
+        <td class="text-center"><%= get_abbr_semester_text section.semester %></td>
+        <td class="text-center"><%= section.year %></td>
+        <td><%= link_to 'Edit', edit_section_path(section) %></td>
+        <td class="text-center"><%= link_to "#{(section.is_suspend ? "Dea" : "A")}ctivated", "/section/toggle/#{section.id}" %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
-<table id="table">
-  <tr>
-    <th>Activate?</th>
-    <th>Course Code</th>
-    <th>English Course Name</th>
-    <th>Section</th>
-    <th>Semester</th>
-    <th>Year</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <!--<section id="teaching-course-list">-->
+    <!--<% if @courses.empty? or @courses.nil? %>-->
+      <!--<p>Not found teaching course's list in the record.</p>-->
 
-  <% @sections.each do |section| %>
-    <tr>
-      <% course = section.course %>
-      <td><%= section.is_suspend %></td>
-      <td><%= course.course_code %></td>
-      <td><%= course.english_course_name %></td>
-      <td class="text-center"><%= section.section %></td>
-      <td class="text-center"><%= get_abbr_semester_text section.semester %></td>
-      <td class="text-center"><%= section.year %></td>
-      <td><%= link_to 'Edit', edit_section_path(section) %></td>
-      <td class="text-center"><%= link_to "#{(section.is_suspend ? "Dea" : "A")}ctivated", "/section/toggle/#{section.id}" %></td>
-    </tr>
-  <% end %>
-</table>
+    <!--<% else %>-->
+      <!--<ul>-->
+        <!--<% @courses.each do |course| %>-->
+          <!--<li>-->
+            <!--<%= link_to  %>-->
+            <!--<span id="course_code"><%= course.course_code %></span>-->
+            <!--<span id="course_name"><%= course.english_course_name %></span>-->
+          <!--</li>-->
+        <!--<% end %>-->
+      <!--</ul>-->
+    <!--<% end %>-->
+  <!--</section>-->

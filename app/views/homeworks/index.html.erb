@@ -3,10 +3,15 @@
   <div id="section-list">
     <h2><%= "#{teacher? ? "Teach" : "Tak"}" %>ing Course List</h2>
     <ul>
-      <% @homeworks.each do |h| %>
+      <% @sections.each do |section| %>
+        <% course = section.course %>
         <li>
-          <span class="section"><%= "#{h.section.course.course_code} sec #{h.section.section}" %></span>
-          <span class="course-name"><%= "#{h.section.course.english_course_name}" %></span>
+          <a href="<%= "/homework/section/#{section.id}" %>">
+            <span class="course-code"><%= course.course_code %></span>
+            <span class="english-course-name"><%= course.english_course_name %></span>
+            <span class="section"><%= "sec #{section.section}" %></span>
+            <span class="semester"><%= "semester #{get_abbr_semester_text section.semester}, year #{section.year}" %></span>
+          </a>
         </li>
       <% end %>
     </ul>
@@ -14,5 +19,28 @@
 
   <div id="homework-list">
     <h2>Homework List</h2>
+
+    <% if teacher? %>
+      <div class="config">
+        <%= link_to "Create a Homework", new_homework_path %>
+      </div>
+    <% end %>
+
+    <ul>
+      <% @homeworks.each do |h| %>
+        <%  %>
+        <li>
+          <a href="<%= "/answer/new/#{h.id}" %>">
+            <span class="section"><%= "#{h.section.course.course_code} sec #{h.section.section}" %></span>
+            <span class="homework-title"><%= "#{h.title}" %></span>
+            <% if teacher? %>
+              <div class="config">
+                <%= link_to "Edit", "/homework/#{h.id}/edit" %>
+              </div>
+            <% end %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

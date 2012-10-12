@@ -1,46 +1,75 @@
 class HomeworksController < ApplicationController
 
-  before_filter :require_teacher, :except => [:index, :handin]
+  before_filter :require_teacher, :except => [:index, :create, :edit, :destroy]
 
   def index
-    @title   = "Homework List"
+    @title = "Homework List"
 
-    @homeworks = Homework.order("due_time").find_all_by_section_id(current_user.sections)
+    section = []
+    (teacher? ? current_user.teaches : current_user.takes).each do |t|
+      section << t.section_id if t.section.is_suspend? or teacher?
+    end
+
+    @sections = Section.find section
+
+    if params[:section_id].nil?
+      @homeworks = Homework.order("due_time").find_all_by_section_id(@sections)
+    else
+      @homeworks = Homework.order("due_time").find_all_by_section_id(params[:section_id])
+    end
   end
 
   def new
+    @title = "Create a Homework"
+
+    @options = []
+    current_user.sections.each do |section|
+      course = section.course
+      @options << ["#{course.english_course_name} #{get_abbr_semester_text section.semester} #{section.year}", section.id]
+    end
+
     @homework = Homework.new
-    @teaches  = Teach.find_all_by_user_id current_user
   end
 
   def create
-    type = @homework.type
-    if type == "SelfHomework"
-      @homework = SelfHomework.new(:params[:homework])
-      if @homework.save
-        flash[:notice] = "Successfully created Self Homework"
-        redirect_to homeworks_path
-      else
-        render :action => 'homeworks/create'
-      end
+    @homework = Homework.new(params[:homework])
 
+    if @homework.save
+      redirect_to homeworks_path, :notice => "Homework was successfully created."
     else
-      flash[:error] = "A Question Homework not been supported yet"
-      redirect_to homeworks_path
+      render :action => 'new'
     end
   end
 
+  def edit
+    @title    = "Edit a Homework"
 
-  def handin
+    @options = []
+    current_user.sections.each do |section|
+      course = section.course
+      @options << ["#{course.english_course_name} #{get_abbr_semester_text section.semester} #{section.year}", section.id]
+    end
+
     @homework = Homework.find(params[:id])
-    if is_self_homework? @homework
-      @self_homework = SelfHomework.new
+  end
+
+  def update
+    @homework = Homework.find(params[:id])
+
+    if @homework.update_attributes(params[:homework])
+      redirect_to homeworks_path, :notice => "Homework was successfully updated."
     else
-      # Redirect to Question homework page
+      render :action => 'edit'
     end
   end
 
-  def download
-    # Do something for get all the student homework
+  def destroy
+    @homework = Homework.find(params[:id])
+
+    if @homework.destroy
+      redirect_to homeworks_path, :notice => "Homework was successfully deleted."
+    else
+
+    end
   end
 end

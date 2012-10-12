@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(:version => 20121009120144) do
     t.text     "description"
     t.datetime "start_time",  :null => false
     t.datetime "due_time",    :null => false
-    t.string   "type",        :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

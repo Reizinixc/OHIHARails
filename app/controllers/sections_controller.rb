@@ -5,6 +5,14 @@ class SectionsController < ApplicationController
   # GET /sections
   def index
     @sections = current_user.sections.order("year DESC").order("semester DESC").order("section").order("is_suspend DESC")
+
+    if teacher?
+      if Teach.find_by_user_id(current_user)
+        @courses = []
+      else
+        @courses = Course.find(get_course_id_from_sections(current_user.sections))
+      end
+    end
   end
 
   # GET /sections/1
@@ -25,35 +33,54 @@ class SectionsController < ApplicationController
   end
 
   # POST /sections
-  # POST /sections.json
   def create
+    # Check the blank course code
+    if params[:course_code].nil? or params[:course_code] == ""
+      redirect_to new_section_path, :notice => "Course code cannot be blank."
+      return
+    end
+
+    # new the section object and set the attribute value from input form in /sections/new
     @section = Section.new(params[:section])
 
-    course = Course.find_by_course_code params[:course_code]
+    # Find the course object by inputed course code
+    course   = Course.find_by_course_code(params[:course_code])
+
+    # Check the course is found?
     if course.nil?
+      # If not found we'll back user to input form again and display the error via flash[:notice]
+
       flash[:notice] = "Cannot find the course with course code #{params[:course_code]}"
       render :action => "new"
     else
+      # If found we gonna to assign it in to section object for reference (section belongs_to course)
       @section.course = course
     end
 
-    # Find duplicate section
+    # Finding is section object'll duplicate to other section in the database
     if section_duplicate? course
+      # The section we gonna to create it is duplicate with other section
       flash[:notice] = "This section is duplicate with other section"
       render :action => "new"
       return
     end
 
+    # Section object can save to the database?
     if @section.save
+      # If section object saved successfully, we'll create section creator to the section's teacher
       t = Teach.new(:section => @section, :user => current_user)
-      t.save
+
+      # Check if teach can save to the database
       if t.save
+        # If successful we redirect to the section main page and display the successful result
         redirect_to sections_path, :notice => "Section was successfully created."
       else
+        # If not successful we back the user to the input form and display the error msg.
         flash[:notice] = "An error occured when assign user to the teach's list"
         render :action => "new"
       end
     else
+      # If section object saved failed, we back to the input form and user'll try again
       render :action => "new"
     end
   end
@@ -85,7 +112,7 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     @section.destroy
 
-    redirect_to sections_url
+    redirect_to sections_url, :notice => "Section was sucessfully deleted."
   end
 
   def toggle_activate
@@ -100,5 +127,4 @@ class SectionsController < ApplicationController
   def section_duplicate?(course)
     !Section.where("course_id = ? AND section = ? AND semester = ? AND year = ?", course.id, @section.section, @section.semester, @section.year).empty?
   end
-
 end

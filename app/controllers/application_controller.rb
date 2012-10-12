@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  include ApplicationHelper
+
   protect_from_forgery
 
 
@@ -80,4 +83,18 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+
+
+  def get_course_id_from_sections(sections)
+    if sections.empty?
+      []
+    else
+      course_id_list = []
+      sections.each do |section|
+        course_id_list << section.course.id
+      end
+      Course.find course_id_list
+    end
+  end
+
 end

@@ -13,7 +13,7 @@ describe Section do
   context "Association" do
     it { should belong_to :courses }
     it { should have_many(:users).through :tas }
-    it { should have_many(:users).through :Takes }
+    it { should have_many(:users).through :takes }
     it { should have_many(:users).through :teaches }
   end
 

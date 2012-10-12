@@ -51,7 +51,6 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:id])
 
     if @user.update_attributes(params[:user])
-      #format.html { redirect_to users_url, notice: 'User was successfully updated.' }
       redirect_to "/user/#{@user.username}", :notice => 'User was successfully updated.'
     else
       render action: "edit"

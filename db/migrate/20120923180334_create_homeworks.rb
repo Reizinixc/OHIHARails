@@ -6,7 +6,7 @@ class CreateHomeworks < ActiveRecord::Migration
       t.text     :description
       t.datetime :start_time, :null => false
       t.datetime :due_time,   :null => false
-      t.string   :type,       :null => false
+      #t.string   :type,       :null => false
 
       t.timestamps
     end
