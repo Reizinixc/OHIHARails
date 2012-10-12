@@ -12,7 +12,9 @@ class Answer < ActiveRecord::Base
                   :sent_time,
                   :student_id,
                   :user,
-                  :homework
+                  :homework,
+                  :score,
+                  :reason
 
   has_attached_file :file,
                     :url => "/:attachment/:id/:username-:filename",

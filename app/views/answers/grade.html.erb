@@ -1,0 +1,17 @@
+<h1>Homework Grading</h1>
+
+<section id="handin-field">
+  <h3>Homework details of <%= "#{@student.name} #{@student.lastname}" %></h3>
+
+  <p>Answer: <%= @answer.description %></p>
+
+  <%= form_for @answer, :url => "/answers/grade/#{@answer.id}", :method => "post" do |f| %>
+    <%= f.label :score %>
+    <%= f.number_field :score %>
+
+    <%= f.label :reason %>
+    <%= f.text_area :reason %>
+
+    <%= f.submit "Grade", :disable_with => "Grading...", :class => "action-btn green" %>
+  <% end %>
+</section>

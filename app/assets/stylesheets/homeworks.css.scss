@@ -25,9 +25,9 @@
     width: 100%;
 
     &.pending {
-      background: -webkit-linear-gradient(top, rgba(245,253,189,0.65) 0%,rgba(245,253,189,0.65) 29%,rgba(243,245,89,0.65) 100%);
-      background: -moz-linear-gradient(top, rgba(245,253,189,0.65) 0%,rgba(245,253,189,0.65) 29%,rgba(243,245,89,0.65) 100%);
-      background: linear-gradient(top, rgba(245,253,189,0.65) 0%,rgba(245,253,189,0.65) 29%,rgba(243,245,89,0.65) 100%);
+      background: -webkit-linear-gradient(top, rgba(245, 253, 189, 0.65) 0%, rgba(245, 253, 189, 0.65) 29%, rgba(243, 245, 89, 0.65) 100%);
+      background: -moz-linear-gradient(top, rgba(245, 253, 189, 0.65) 0%, rgba(245, 253, 189, 0.65) 29%, rgba(243, 245, 89, 0.65) 100%);
+      background: linear-gradient(top, rgba(245, 253, 189, 0.65) 0%, rgba(245, 253, 189, 0.65) 29%, rgba(243, 245, 89, 0.65) 100%);
     }
   }
 }
@@ -38,4 +38,83 @@
   background: #f7fdf7;
   width: 510px;
   padding: 15px;
+
+  & ul {
+    list-style: none inside;
+  }
+
+  & li {
+    display: block;
+    height: 30px;
+    margin-bottom: 10px;
+  }
+
+  & li > * {
+    text-decoration: none;
+  }
+
+  & .btn {
+    $height: 30px;
+
+    display: block;
+    float: right;
+    height: $height;
+    line-height: $height;
+    width: 50px;
+    border-radius: 7px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  & .yellow {
+    background: -webkit-linear-gradient(top, rgba(229, 235, 214, 0.65) 0%, rgba(229, 235, 214, 0.65) 21%, rgba(207, 218, 84, 0.65) 83%, rgba(207, 218, 84, 0.65) 100%);
+    background: -moz-linear-gradient(top, rgba(229, 235, 214, 0.65) 0%, rgba(229, 235, 214, 0.65) 21%, rgba(207, 218, 84, 0.65) 83%, rgba(207, 218, 84, 0.65) 100%);
+  }
+}
+
+#homework-result {
+  @include div-center;
+  @include div-shadow(4px);
+  width: 95%;
+  border-radius: 2px;
+  background: #eef6e5;
+  padding: 5px 15px 15px 15px;
+
+  & thead * {
+    background-color: #133D0D !important;
+    text-align: center;
+    line-height: 2em;
+    color: white;
+  }
+
+  & tr:nth-child(odd) {
+    background-color: #e2f4cd !important;
+  }
+
+  & tr:nth-child(even) {
+    background-color: #e8f9e4 !important;
+  }
+
+  & td {
+    padding: 3px;
+    line-height: 1.3em;
+  }
+
+  & .choice {
+    width: 75px;
+    max-width: 75px;
+    text-align: center;
+  }
+
+  & #student-id {
+    width: 120px;
+    max-width: 120px;
+    text-align: center !important;
+  }
+}
+
+#answer-file-list {
+  margin: 0 auto;
+  width: 95%;
+  border-collapse: collapse;
 }

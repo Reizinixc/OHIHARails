@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20121009081819) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.integer  "score"
+    t.text     "reason"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end

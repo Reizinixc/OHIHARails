@@ -62,6 +62,10 @@ OHIHARubymine::Application.routes.draw do
     match '/', :to => 'homeworks#index', :via => :get
     match '/' => 'answers#create', :via => :post
     match '/new/:homework_id' => 'answers#new', :via => :get
+    match '/download/:answer_id', :to => 'answers#download'
+
+    match '/grade/:answer_id', :to => 'answers#grade', :via => :get
+    match '/grade/:answer_id', :to => 'answers#grade_update', :via => :post
   end
 
   resources :answers, :except => [:index]

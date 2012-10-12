@@ -20,6 +20,12 @@ class HomeworksController < ApplicationController
     end
   end
 
+  def show
+    @homework = Homework.find(params[:id])
+    @answers = @homework.answers
+
+  end
+
   def new
     @title = "Create a Homework"
 

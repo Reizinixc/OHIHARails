@@ -9,6 +9,9 @@ class CreateAnswers < ActiveRecord::Migration
       t.string :ip
       t.attachment :file
 
+      t.integer :score
+      t.text :reason
+
       t.timestamps
     end
   end

@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
 
   before_filter :require_login
-  before_filter :require_teacher, :only => [:download]
+  before_filter :require_teacher, :only => [:download, :grade, :grade_update]
 
   def new
     # Find a homework ID
@@ -35,11 +35,11 @@ class AnswersController < ApplicationController
     end
 
     # Update Attribute file
-    @answer = Answer.new(params[:answer])
-    @answer.sent_time = DateTime.now
+    @answer            = Answer.new(params[:answer])
+    @answer.sent_time  = DateTime.now
     #@answer.user = current_user
     @answer.student_id = current_user.id
-    @answer.ip = request.remote_ip
+    @answer.ip         = request.remote_ip
 
     if @answer.save
       redirect_to homeworks_path, :notice => "The homework was successfully handed in."
@@ -49,7 +49,7 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    @answer = Answer.find(params[:id])
+    @answer   = Answer.find(params[:id])
     @homework = @answer.homework
   end
 
@@ -64,11 +64,11 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
 
     if @answer.update_attributes(params[:answer])
-      @answer = Answer.new(params[:answer])
-      @answer.sent_time = DateTime.now
+      @answer            = Answer.new(params[:answer])
+      @answer.sent_time  = DateTime.now
       #@answer.user = current_user
       @answer.student_id = current_user.id
-      @answer.ip = request.remote_ip
+      @answer.ip         = request.remote_ip
       redirect_to homeworks_path, :notice => "Homework was successfully updated."
     else
       render :edit
@@ -79,6 +79,34 @@ class AnswersController < ApplicationController
 
   end
 
+  def grade
+    begin
+      @answer = Answer.find(params[:answer_id])
+    rescue
+      redirect_to homeworks_path, :notice => "Cannot find the specificed homework."
+      return
+    end
+
+    @student = User.find(@answer.student_id)
+
+  end
+
+  def grade_update
+    @answer = Answer.find(params[:answer_id])
+
+    if Integer(params[:answer][:score]) < 0
+      flash[:notice] = "Score must be greater than or equal 0"
+      @student = User.find(@answer.student_id)
+      render :grade
+    else
+      if @answer.update_attributes(params[:answer])
+        redirect_to "/homeworks/#{@answer.homework_id}", :notice => "The homework had been graded successfully"
+      else
+        @student = User.find(@answer.student_id)
+        render :grade
+      end
+    end
+  end
 
 
   def time_up?(homework)
@@ -87,7 +115,7 @@ class AnswersController < ApplicationController
 
   def get_handed_answer(homework)
     homework_answer = homework.answers
-    student_id = current_user.id
+    student_id      = current_user.id
 
     homework_answer.each do |answer|
       if answer.student_id == student_id

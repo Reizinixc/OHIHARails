@@ -17,7 +17,7 @@
     </ul>
   </div>
 
-  <div id="homework-list">
+  <section id="homework-list">
     <h2>Homework List</h2>
 
     <% if teacher? %>
@@ -28,19 +28,23 @@
 
     <ul>
       <% @homeworks.each do |h| %>
-        <%  %>
         <li>
-          <a href="<%= "/answers/new/#{h.id}" %>">
-            <span class="section"><%= "#{h.section.course.course_code} sec #{h.section.section}" %></span>
-            <span class="homework-title"><%= "#{h.title}" %></span>
-            <% if teacher? %>
-              <div class="config">
-                <%= link_to "Edit", "/homework/#{h.id}/edit" %>
-              </div>
-            <% end %>
-          </a>
+          <% if teacher? %>
+            <a href="<%= "/homeworks/#{h.id}" %>">
+              <span class="section"><%= "#{h.section.course.course_code} sec #{h.section.section}" %></span>
+              <span class="homework-title"><%= "#{h.title}" %></span>
+            </a>
+            <span>
+              <%= link_to "Edit", "/homeworks/#{h.id}/edit", :class => "btn yellow" %>
+            </span>
+          <% else %>
+            <a href="<%= "/answers/new/#{h.id}" %>">
+              <span class="section"><%= "#{h.section.course.course_code} sec #{h.section.section}" %></span>
+              <span class="homework-title"><%= "#{h.title}" %></span>
+            </a>
+          <% end %>
         </li>
       <% end %>
     </ul>
-  </div>
+  </section>
 </div>
