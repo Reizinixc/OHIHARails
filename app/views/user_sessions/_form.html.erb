@@ -2,9 +2,9 @@
   <%= render :partial => "shared/user_error", :locals => { :model_object => @user_session } %>
 
   <%= f.label :username %>
-  <%= f.text_field :username %>
+  <%= f.text_field :username, :required => "required" %>
 
   <%= f.label :password %>
   <%= f.password_field :password %>
-  <%= f.submit "Sign in", :disable_with => "Signing in...", :class => "action-btn green" %>
+  <%= f.submit "Sign in", :disable_with => "Signing in...", :class => "action-btn green", :required => "required" %>
 <% end %>

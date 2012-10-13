@@ -11,4 +11,6 @@
   </ul>
 </section>
 
-<%= link_to 'Edit', edit_user_path(@user), :class => "action-btn yellow" %>
+<% if admin? or @user == current_user %>
+  <%= link_to 'Edit', edit_user_path(@user), :class => "action-btn yellow" %>
+<% end %>

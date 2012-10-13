@@ -3,16 +3,16 @@
 
   <div id="field">
     <%= f.label "Course Code" %>
-    <%= text_field_tag "course_code", "#{params[:course_code] unless params[:course_code].nil?}" %>
+    <%= text_field_tag "course_code", "#{params[:course_code] unless params[:course_code].nil?}", :required => "required" %>
 
     <%= f.label :year %>
-    <%= f.text_field :year %>
+    <%= f.text_field :year, :required => "required" %>
 
     <%= f.label :semester %>
     <%= f.select :semester, options_for_select([["Summer", 0], ["Semester I", 1], ["Semester II", 2], ["Semester III", 3]], :selected => params[:semester]) %>
 
     <%= f.label :section %>
-    <%= f.number_field :section, :min => 0 %>
+    <%= f.number_field :section, :min => 0, :required => "required" %>
 
     <%= f.label "Activated" %>
     <%= f.check_box :is_suspend %>

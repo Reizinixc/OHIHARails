@@ -70,6 +70,8 @@ OHIHARubymine::Application.routes.draw do
 
   resources :answers, :except => [:index]
 
+  match '/help', :to => 'helps#index'
+
   #get "answer/create"
   #get "answer/edit"
   #get "answer/download"

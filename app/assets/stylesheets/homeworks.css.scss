@@ -17,12 +17,17 @@
   float: left;
 
   ul {
-    list-style: none;
+    list-style: none inside;
     margin-bottom: 7px;
   }
 
   li {
     width: 100%;
+    margin-bottom: 10px;
+
+    & a {
+      text-decoration: none;
+    }
 
     &.pending {
       background: -webkit-linear-gradient(top, rgba(245, 253, 189, 0.65) 0%, rgba(245, 253, 189, 0.65) 29%, rgba(243, 245, 89, 0.65) 100%);

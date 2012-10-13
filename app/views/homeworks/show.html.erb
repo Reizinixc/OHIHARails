@@ -8,19 +8,23 @@
   <% else %>
     <table id="answer-file-list" class="table">
       <thead>
-      <th id="student-id">Username</th>
-      <th>Answer</th>
-      <th class="choice" id="score">Score</th>
-      <th class="choice" id="grade"></th>
-      <!--<th class="choice" id="download"></th>-->
+      <tr>
+        <th id="student-id">Username</th>
+        <th>Answer</th>
+        <th class="choice" id="score">Score</th>
+        <th class="choice" id="grade"></th>
+        <!--<th class="choice" id="download"></th>-->
+      </tr>
       </thead>
       <tbody>
       <% @answers.each do |answer| %>
-        <td><%= link_to username = User.find(answer.student_id).username, "/user/#{username}" %></td>
-        <td><%= answer.description %></td>
-        <td><%= answer.score %></td>
-        <td><%= link_to "Grade", "/answers/grade/#{answer.id}" %></td>
-        <!--<td> link_to "Download", "/answers/download/#{answer.id}" unless answer.file.nil? </td>-->
+        <tr>
+          <td><%= link_to username = User.find(answer.student_id).username, "/user/#{username}" %></td>
+          <td><%= answer.description %></td>
+          <td><%= answer.score %></td>
+          <td><%= link_to "Grade", "/answers/grade/#{answer.id}" %></td>
+          <!--<td> link_to "Download", "/answers/download/#{answer.id}" unless answer.file.nil? </td>-->
+        </tr>
       <% end %>
       </tbody>
     </table>

@@ -6,13 +6,13 @@
     <%= f.select :section_id, options_for_select(@options, @homework.section_id) %>
 
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :required => "required" %>
 
     <%= f.label :description %>
     <%= f.text_area :description %>
 
     <%= f.label :start_time %>
-    <%= f.text_field :start_time %>
+    <%= f.text_field :start_time, :required => "required" %>
 
     <script type="text/javascript">
       $('#homework_start_time').click(
@@ -23,7 +23,7 @@
     </script>
 
     <%= f.label :due_time %>
-    <%= f.text_field :due_time %>
+    <%= f.text_field :due_time, :required => "required" %>
 
     <script type="text/javascript">
       $('#homework_due_time').click(
